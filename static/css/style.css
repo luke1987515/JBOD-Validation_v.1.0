@@ -1,0 +1,21 @@
+body{
+    background:#f5f6fa;
+}
+
+.card{
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.sidebar{
+    min-height:100vh;
+}
+
+.nav-link{
+    padding:12px;
+}
+
+.nav-link:hover{
+    background:#495057;
+    border-radius:8px;
+}
