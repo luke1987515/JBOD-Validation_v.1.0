@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}
+Delete Model
+{% endblock %}
+
+{% block content %}
+
+<div class="card">
+
+    <div class="card-body">
+
+        <h3>
+
+            Delete Model
+
+        </h3>
+
+        <p>
+
+            Are you sure you want to delete
+
+            <strong>
+
+                {{ model.model_name }}
+
+            </strong>
+
+            ?
+
+        </p>
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            <button class="btn btn-danger">
+
+                Delete
+
+            </button>
+
+            <a href="{% url 'model_list' %}" class="btn btn-secondary">
+
+                Cancel
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

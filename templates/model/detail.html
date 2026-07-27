@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}
+Model Detail
+{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">
+
+    Model Detail
+
+</h2>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <table class="table">
+
+            <tr>
+
+                <th width="180">
+                    Model Name
+                </th>
+
+                <td>{{ model.model_name }}</td>
+
+            </tr>
+
+            <tr>
+
+                <th>Vendor</th>
+
+                <td>{{ model.vendor }}</td>
+
+            </tr>
+
+            <tr>
+
+                <th>Platform</th>
+
+                <td>{{ model.platform }}</td>
+
+            </tr>
+
+            <tr>
+
+                <th>Description</th>
+
+                <td>{{ model.description }}</td>
+
+            </tr>
+
+            <tr>
+
+                <th>Status</th>
+
+                <td>{{ model.status }}</td>
+
+            </tr>
+
+        </table>
+
+        <a href="{% url 'model_edit' model.pk %}" class="btn btn-warning">
+
+            Edit
+
+        </a>
+
+        <a href="{% url 'model_list' %}" class="btn btn-secondary">
+
+            Back
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

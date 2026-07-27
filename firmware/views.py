@@ -1,31 +1,140 @@
-from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.contrib import messages
+from django.shortcuts import get_object_or_404, redirect, render
 
-from .models import Firmware
 from .forms import FirmwareForm
+from .models import Firmware
 
 
-class FirmwareListView(ListView):
-    model = Firmware
-    template_name = "firmware/index.html"
-    context_object_name = "firmwares"
+def index(request):
+    keyword = request.GET.get("q", "").strip()
 
-    def get_queryset(self):
-        keyword = self.request.GET.get("q")
+    firmwares = Firmware.objects.all()
 
-        if keyword:
-            return Firmware.objects.filter(version__icontains=keyword)
+    if keyword:
+        firmwares = firmwares.filter(
+            version__icontains=keyword
+        )
 
-        return Firmware.objects.all()
+    return render(
+        request,
+        "firmware/index.html",
+        {
+            "firmwares": firmwares,
+            "keyword": keyword,
+        },
+    )
 
 
-class FirmwareCreateView(CreateView):
-    model = Firmware
-    form_class = FirmwareForm
-    template_name = "firmware/form.html"
-    success_url = reverse_lazy("firmware_list")
+def add_firmware(request):
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = "Add Firmware"
-        return context
+    if request.method == "POST":
+
+        form = FirmwareForm(request.POST)
+
+        if form.is_valid():
+
+            form.save()
+
+            messages.success(
+                request,
+                "Firmware created successfully."
+            )
+
+            return redirect("firmware_list")
+
+    else:
+
+        form = FirmwareForm()
+
+    return render(
+        request,
+        "firmware/form.html",
+        {
+            "form": form,
+            "title": "Add Firmware",
+        },
+    )
+
+
+def edit_firmware(request, pk):
+
+    firmware = get_object_or_404(
+        Firmware,
+        pk=pk,
+    )
+
+    if request.method == "POST":
+
+        form = FirmwareForm(
+            request.POST,
+            instance=firmware,
+        )
+
+        if form.is_valid():
+
+            form.save()
+
+            messages.success(
+                request,
+                "Firmware updated successfully."
+            )
+
+            return redirect("firmware_list")
+
+    else:
+
+        form = FirmwareForm(
+            instance=firmware,
+        )
+
+    return render(
+        request,
+        "firmware/form.html",
+        {
+            "form": form,
+            "title": "Edit Firmware",
+        },
+    )
+
+
+def detail_firmware(request, pk):
+
+    firmware = get_object_or_404(
+        Firmware,
+        pk=pk,
+    )
+
+    return render(
+        request,
+        "firmware/detail.html",
+        {
+            "firmware": firmware,
+        },
+    )
+
+
+def delete_firmware(request, pk):
+
+    firmware = get_object_or_404(
+        Firmware,
+        pk=pk,
+    )
+
+    if request.method == "POST":
+
+        firmware.delete()
+
+        messages.success(
+            request,
+            "Firmware deleted successfully."
+        )
+
+        return redirect("firmware_list")
+
+    return render(
+        request,
+        "firmware/delete.html",
+        {
+            "firmware": firmware,
+        },
+    )

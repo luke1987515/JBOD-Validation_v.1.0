@@ -1,68 +1,91 @@
-<nav class="bg-dark text-white vh-100 p-3" style="width:260px;">
+<nav class="sidebar bg-dark text-white">
 
-    <h4 class="mb-4">
-        <i class="fa-solid fa-server"></i>
-        JBOD Validation
-    </h4>
+    <!-- Logo -->
+    <div class="sidebar-header">
+
+        <h4>
+            <i class="fa-solid fa-server me-2"></i>
+            JBOD Validation
+        </h4>
+
+        <small class="text-secondary">
+            Validation Platform
+        </small>
+
+    </div>
+
+    <hr class="text-secondary">
 
     <!-- Dashboard -->
-    <h6 class="text-secondary mt-3">Dashboard</h6>
+    <div class="menu-title">
+        Dashboard
+    </div>
 
-    <a class="nav-link text-white" href="/">
+    <a class="sidebar-link" href="/">
         <i class="fa-solid fa-gauge"></i>
         Dashboard
     </a>
 
     <!-- Asset -->
-    <h6 class="text-secondary mt-4">Asset Management</h6>
+    <div class="menu-title">
+        Asset Management
+    </div>
 
-    <a class="nav-link text-white" href="/model/">
+    <a class="sidebar-link" href="/model/">
         <i class="fa-solid fa-box"></i>
         Models
     </a>
 
-    <a class="nav-link text-white" href="#">
+    <a class="sidebar-link" href="/firmware/">
         <i class="fa-solid fa-microchip"></i>
         Firmware
     </a>
 
     <!-- Validation -->
-    <h6 class="text-secondary mt-4">Validation</h6>
+    <div class="menu-title">
+        Validation
+    </div>
 
-    <a class="nav-link text-white" href="#">
+    <a class="sidebar-link" href="/testcase/">
         <i class="fa-solid fa-list-check"></i>
         Test Case
     </a>
 
-    <a class="nav-link text-white" href="#">
+    <a class="sidebar-link" href="/testplan/">
         <i class="fa-solid fa-layer-group"></i>
         Test Plan
     </a>
 
-    <a class="nav-link text-white" href="#">
+    <a class="sidebar-link" href="/executor/">
         <i class="fa-solid fa-play"></i>
         Execute
     </a>
 
     <!-- Report -->
-    <h6 class="text-secondary mt-4">Reports</h6>
+    <div class="menu-title">
+        Report
+    </div>
 
-    <a class="nav-link text-white" href="#">
+    <a class="sidebar-link" href="/report/">
         <i class="fa-solid fa-file-lines"></i>
         Report
     </a>
 
-    <a class="nav-link text-white" href="#">
+    <a class="sidebar-link" href="/logs/">
         <i class="fa-solid fa-terminal"></i>
         Logs
     </a>
 
-    <!-- System -->
-    <h6 class="text-secondary mt-4">System</h6>
+    <!-- Bottom -->
+    <div class="sidebar-bottom">
 
-    <a class="nav-link text-white" href="/admin/">
-        <i class="fa-solid fa-user-gear"></i>
-        Administration
-    </a>
+        <hr class="text-secondary">
+
+        <a class="sidebar-link" href="/admin/">
+            <i class="fa-solid fa-user-gear"></i>
+            Administration
+        </a>
+
+    </div>
 
 </nav>
