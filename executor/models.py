@@ -1,7 +1,6 @@
 from django.db import models
 
-from models_app.models import JBODModel
-from firmware.models import Firmware
+from testplan.models import TestPlan
 from testcase.models import TestCase
 
 
@@ -14,13 +13,8 @@ class ExecuteJob(models.Model):
         FAIL = "FAIL", "Fail"
         STOP = "STOP", "Stop"
 
-    model = models.ForeignKey(
-        JBODModel,
-        on_delete=models.CASCADE,
-    )
-
-    firmware = models.ForeignKey(
-        Firmware,
+    testplan = models.ForeignKey(
+        TestPlan,
         on_delete=models.CASCADE,
     )
 
@@ -30,23 +24,16 @@ class ExecuteJob(models.Model):
         default=Status.PENDING,
     )
 
-    start_time = models.DateTimeField(
-        null=True,
-        blank=True,
-    )
+    progress = models.PositiveIntegerField(default=0)
 
-    end_time = models.DateTimeField(
-        null=True,
-        blank=True,
-    )
+    start_time = models.DateTimeField(null=True, blank=True)
 
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-    )
+    end_time = models.DateTimeField(null=True, blank=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"Job #{self.pk}"
-
 
 class ExecuteLog(models.Model):
 
@@ -54,6 +41,7 @@ class ExecuteLog(models.Model):
         INFO = "INFO", "Info"
         PASS = "PASS", "Pass"
         FAIL = "FAIL", "Fail"
+        ERROR = "ERROR", "Error"
 
     job = models.ForeignKey(
         ExecuteJob,
@@ -74,19 +62,12 @@ class ExecuteLog(models.Model):
 
     message = models.TextField()
 
-    output = models.TextField(
-        blank=True,
-    )
-
     duration = models.FloatField(
         null=True,
         blank=True,
-        help_text="Execution time (seconds)",
     )
 
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-    )
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.job} | {self.testcase} | {self.level}"
+        return f"{self.job} - {self.testcase}"

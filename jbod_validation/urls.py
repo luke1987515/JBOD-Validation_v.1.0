@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-
     path("admin/", admin.site.urls),
 
     path("", include("dashboard.urls")),
@@ -14,4 +13,6 @@ urlpatterns = [
     path("firmware/", include("firmware.urls")),
 
     path("testcase/", include("testcase.urls")),
+
+    path("testplan/", include("testplan.urls")),
 ]

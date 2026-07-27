@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'logs',
     "models_app",
     "firmware",
-    
+    "testplan",
 ]
 
 MIDDLEWARE = [
