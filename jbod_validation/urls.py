@@ -10,4 +10,8 @@ urlpatterns = [
     path("model/", include("models_app.urls")),
 
     path("accounts/", include("django.contrib.auth.urls")),
+
+    path("firmware/", include("firmware.urls")),
+
+    path("testcase/", include("testcase.urls")),
 ]
