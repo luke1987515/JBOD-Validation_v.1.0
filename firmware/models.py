@@ -15,25 +15,36 @@ class Firmware(models.Model):
         INACTIVE = "INACTIVE", "Inactive"
 
     firmware_type = models.CharField(
+        "Firmware Type",
         max_length=20,
         choices=FirmwareType.choices,
     )
 
-    version = models.CharField(max_length=50)
+    version = models.CharField(
+        "Version",
+        max_length=50,
+    )
 
     vendor = models.CharField(
+        "Vendor",
         max_length=100,
         blank=True,
     )
 
     build_number = models.CharField(
+        "Build Number",
         max_length=50,
         blank=True,
     )
 
-    release_date = models.DateField()
+    release_date = models.DateField(
+        "Release Date",
+    )
 
-    description = models.TextField(blank=True)
+    description = models.TextField(
+        "Description",
+        blank=True,
+    )
 
     status = models.CharField(
         max_length=10,
@@ -42,11 +53,12 @@ class Firmware(models.Model):
     )
 
     created_at = models.DateTimeField(auto_now_add=True)
-
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ["firmware_type", "-release_date"]
+        verbose_name = "Firmware"
+        verbose_name_plural = "Firmware"
 
     def __str__(self):
         return f"{self.firmware_type} {self.version}"

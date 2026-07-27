@@ -9,6 +9,7 @@ class FirmwareAdmin(admin.ModelAdmin):
         "firmware_type",
         "version",
         "vendor",
+        "build_number",
         "release_date",
         "status",
     )
@@ -21,4 +22,10 @@ class FirmwareAdmin(admin.ModelAdmin):
     search_fields = (
         "version",
         "vendor",
+        "build_number",
+    )
+
+    ordering = (
+        "firmware_type",
+        "-release_date",
     )
