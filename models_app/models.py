@@ -1,5 +1,5 @@
 from django.db import models
-
+from firmware.models import Firmware
 
 class JBODModel(models.Model):
     STATUS_CHOICES = [
@@ -41,6 +41,12 @@ class JBODModel(models.Model):
 
     updated_at = models.DateTimeField(
         auto_now=True
+    )
+
+    firmwares = models.ManyToManyField(
+    Firmware,
+    blank=True,
+    related_name="models",
     )
 
     def __str__(self):
