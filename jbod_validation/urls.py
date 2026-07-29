@@ -15,4 +15,9 @@ urlpatterns = [
     path("testcase/", include("testcase.urls")),
 
     path("testplan/", include("testplan.urls")),
+
+    path(
+    "validation/",
+    include("validation.urls"),
+),
 ]

@@ -1,15 +1,24 @@
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 
 from .forms import JBODModelForm
 from .models import JBODModel
 
 
 def index(request):
+    """
+    JBOD Model List
+    顯示所有 JBOD Model，並支援關鍵字搜尋。
+    """
+
+    # 取得搜尋關鍵字
     keyword = request.GET.get("q", "").strip()
 
+    # 查詢所有 Model
     models = JBODModel.objects.all()
 
+    # 關鍵字搜尋
     if keyword:
         models = models.filter(
             model_name__icontains=keyword
@@ -19,8 +28,14 @@ def index(request):
         request,
         "model/index.html",
         {
+            # Model 清單
             "models": models,
+
+            # 搜尋關鍵字
             "keyword": keyword,
+
+            # Page Header Component 使用
+            "add_url": reverse("model_add"),
         },
     )
 

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "models_app",
     "firmware",
     "testplan",
+    "validation",
 ]
 
 MIDDLEWARE = [
