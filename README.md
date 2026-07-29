@@ -1,46 +1,72 @@
 # JBOD Validation Platform
 
-A web-based **JBOD (Just a Bunch Of Disks) Validation Platform** built with **Django** for managing validation assets, firmware, test plans, and automated execution workflows.
+A web-based **JBOD (Just a Bunch Of Disks) Validation Platform** built with **Django** for enterprise storage validation management.
 
-The platform is designed to streamline the validation process for enterprise storage products by integrating asset management, test execution, progress monitoring, and report generation into a single web interface.
+The platform centralizes **asset management, firmware management, validation planning, automated execution, and report generation** into a modern web interface designed for Product Validation Engineers.
 
 ---
 
-## Features
+# Features
 
-### Dashboard
+## Dashboard
 
-- Validation overview
-- Running jobs
-- Recent firmware releases
-- Validation statistics
+- Validation Overview
+- Running Jobs
+- Recent Firmware Releases
+- Validation Statistics
+- Quick Navigation
 
-### Model Management
+---
 
-- Create, edit, delete and view JBOD models
-- Vendor information
-- Platform information
-- Firmware association
+## Asset Management
+
+### JBOD Models
+
+- Create / Edit / Delete Models
+- Vendor Management
+- Platform Management
+- Firmware Association
+- Status Management
 
 ### Firmware Management
+
+Support multiple firmware types:
 
 - BIOS
 - BMC
 - CPLD
 - Expander
-- PSU Firmware
+- PSU
 
-Support for:
+Features:
 
-- Version management
-- Release date
+- Version Management
+- Release Date
+- Build Number
 - Vendor
-- Build number
-- Status management
+- Status Tracking
 
-### Test Case Management
+---
 
-Manage validation scripts including:
+## Validation Management
+
+### Validation Center
+
+Manage validation projects.
+
+Features:
+
+- Create Validation
+- Edit Validation
+- Validation Status
+- Assigned Test Plan
+- Assigned Firmware
+
+### Test Case
+
+Manage validation scripts.
+
+Support:
 
 - Function Test
 - Hardware Test
@@ -48,14 +74,14 @@ Manage validation scripts including:
 - Performance Test
 - Stress Test
 
-Each test case contains:
+Each Test Case contains:
 
-- Script / Command
+- Command / Script
 - Timeout
 - Description
 - Status
 
-### Test Plan Management
+### Test Plan
 
 Create reusable validation plans.
 
@@ -66,53 +92,76 @@ Each Test Plan contains:
 - Multiple Test Cases
 - Description
 
-### Validation Executor
+---
+
+## Validation Executor *(In Development)*
 
 Execute validation tasks with:
 
-- Progress monitoring
-- Real-time status
-- Execution logs
-- PASS / FAIL result
-
-### Report System (Planned)
-
-Generate validation reports including:
-
-- Test Summary
-- Execution Result
-- Firmware Information
-- Test Log
-- PDF Export
+- Progress Monitoring
+- Real-time Status
+- Execution Logs
+- PASS / FAIL Result
+- Live Console Output
 
 ---
 
-## Technology Stack
+## Report System *(Planned)*
 
-### Backend
+Generate validation reports including:
 
+- Validation Summary
+- Firmware Information
+- Test Results
+- Execution Logs
+- PDF Export
+- HTML Report
+
+---
+
+# Enterprise UI
+
+Current UI includes:
+
+- Bootstrap 5 Dashboard
+- Responsive Sidebar
+- Reusable UI Components
+- Card Layout
+- Search Component
+- Status Badge
+- Empty State
+- Responsive Tables
+
+---
+
+# Technology Stack
+
+## Backend
+
+- Python 3.14
 - Django 6
-- Python 3
 
-### Frontend
+## Frontend
 
 - Bootstrap 5
 - HTML5
 - CSS3
 - JavaScript
-
-### Database
-
-- SQLite (Development)
-- PostgreSQL (Future)
-
-### Icons
-
 - Font Awesome
+
+## Database
+
+Development
+
+- SQLite
+
+Production (Planned)
+
+- PostgreSQL
 
 ---
 
-## Project Structure
+# Project Structure
 
 ```text
 JBOD-Validation/
@@ -120,33 +169,50 @@ JBOD-Validation/
 ├── dashboard/
 ├── models_app/
 ├── firmware/
+├── validation/
 ├── testcase/
 ├── testplan/
 ├── executor/
 ├── report/
 │
 ├── templates/
+│   ├── dashboard/
+│   ├── model/
+│   ├── firmware/
+│   ├── validation/
+│   ├── testcase/
+│   ├── testplan/
+│   ├── components/
+│   └── includes/
 │
 ├── static/
+│   ├── css/
+│   ├── js/
+│   └── images/
+│
+├── docs/
 │
 ├── jbod_validation/
 │
-└── manage.py
+├── manage.py
+├── requirements.txt
+├── README.md
+└── LICENSE
 ```
 
 ---
 
-## Installation
+# Installation
 
-### Clone Repository
+## Clone Repository
 
 ```bash
-git clone https://github.com/yourname/JBOD-Validation.git
+git clone https://github.com/<your-account>/JBOD-Validation.git
 
 cd JBOD-Validation
 ```
 
-### Create Virtual Environment
+## Create Virtual Environment
 
 ```bash
 python -m venv venv
@@ -158,19 +224,19 @@ Windows
 venv\Scripts\activate
 ```
 
-Linux
+Linux / macOS
 
 ```bash
 source venv/bin/activate
 ```
 
-### Install Dependencies
+## Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Database Migration
+## Database Migration
 
 ```bash
 python manage.py makemigrations
@@ -178,13 +244,13 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-### Create Superuser
+## Create Superuser
 
 ```bash
 python manage.py createsuperuser
 ```
 
-### Run Development Server
+## Run Server
 
 ```bash
 python manage.py runserver
@@ -193,63 +259,72 @@ python manage.py runserver
 Open:
 
 ```
-http://127.0.0.1:8000
+http://127.0.0.1:8000/
 ```
 
 ---
 
-## Development Roadmap
+# Development Roadmap
 
-### Phase 1
+## Phase 1 ✅
 
 - [x] Dashboard
-- [x] Model Management
-- [x] Firmware Management
-- [ ] Test Case Management
-- [ ] Test Plan Management
+- [x] Models
+- [x] Firmware
+- [x] Validation Center
+- [x] Reusable UI Components
+- [x] Enterprise Sidebar
 
-### Phase 2
+## Phase 2 🚧
 
-- [ ] Validation Executor
-- [ ] Execution Log
+- [ ] Test Case CRUD
+- [ ] Test Plan CRUD
+- [ ] Executor
 - [ ] Progress Monitor
-- [ ] Real-time Status
 
-### Phase 3
+## Phase 3
 
-- [ ] Report Generation
+- [ ] Validation Report
 - [ ] PDF Export
 - [ ] Charts
-- [ ] Email Notification
+- [ ] Dashboard Analytics
 
-### Phase 4
+## Phase 4
 
 - [ ] REST API
 - [ ] WebSocket
-- [ ] Docker Deployment
+- [ ] Celery
 - [ ] PostgreSQL
-- [ ] Celery Task Queue
+- [ ] Docker
 
 ---
 
-## Screenshots
+# Screenshots
 
 Coming Soon
 
 ---
 
-## License
+# License
 
-MIT License
+This project is licensed under the **MIT License**.
+
+See the LICENSE file for details.
 
 ---
 
-## Author
+# Author
 
 **Travis**
 
 Product Validation Engineer
 
+Python Developer
+
 Django Developer
 
 Storage Validation Automation
+
+---
+
+⭐ If you like this project, please consider giving it a star.
