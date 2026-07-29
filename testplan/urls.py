@@ -5,7 +5,9 @@ from .views import (
     TestPlanCreateView,
 )
 
+app_name = "testplan"
+
 urlpatterns = [
-    path("", TestPlanListView.as_view(), name="testplan_list"),
-    path("add/", TestPlanCreateView.as_view(), name="testplan_add"),
+    path("", TestPlanListView.as_view(), name="index"),
+    path("add/", TestPlanCreateView.as_view(), name="add"),
 ]

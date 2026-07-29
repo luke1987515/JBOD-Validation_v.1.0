@@ -23,7 +23,7 @@ class TestPlanCreateView(CreateView):
     model = TestPlan
     form_class = TestPlanForm
     template_name = "testplan/form.html"
-    success_url = reverse_lazy("testplan_list")
+    success_url = reverse_lazy("testplan:index")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

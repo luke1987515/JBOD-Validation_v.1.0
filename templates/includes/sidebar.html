@@ -51,17 +51,19 @@
         Validation Center
     </a>
 
-    <a class="sidebar-link" href="{% url 'testcase_list' %}">
+    <!-- Test Case -->
+    <a class="sidebar-link" href="{% url 'testcase:index' %}">
         <i class="fa-solid fa-list-check"></i>
         Test Case
     </a>
 
-    <a class="sidebar-link" href="{% url 'testplan_list' %}">
+    <!-- Test Plan -->
+    <a class="sidebar-link" href="{% url 'testplan:index' %}">
         <i class="fa-solid fa-layer-group"></i>
         Test Plan
     </a>
 
-    <!-- Coming Soon -->
+    <!-- Execute -->
     <a class="sidebar-link text-secondary" href="javascript:void(0);">
         <i class="fa-solid fa-play"></i>
         Execute

@@ -4,12 +4,13 @@ from .models import TestCase
 
 @admin.register(TestCase)
 class TestCaseAdmin(admin.ModelAdmin):
+
     list_display = (
+        "case_id",
         "name",
         "category",
         "timeout",
         "status",
-        "created_at",
     )
 
     list_filter = (
@@ -18,6 +19,10 @@ class TestCaseAdmin(admin.ModelAdmin):
     )
 
     search_fields = (
+        "case_id",
         "name",
-        "command",
+    )
+
+    ordering = (
+        "case_id",
     )
