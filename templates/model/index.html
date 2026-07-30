@@ -6,9 +6,10 @@
 
 {% block content %}
 
-<!-- Header -->
+<!-- 頁面標頭與操作按鈕區塊 / Page Header & Top Action Button -->
 <div class="d-flex justify-content-between align-items-center mb-4">
 
+    {# 引入通用標頭元件 / Include reusable page header component #}
     {% include "components/page_header.html" with title="機型管理（Models）" subtitle="建立、查詢與維護 JBOD 機型資料" %}
 
     <a href="{% url 'model_add' %}" class="btn btn-primary">
@@ -18,10 +19,10 @@
 
 </div>
 
-<!-- Search -->
+<!-- 搜尋表單區塊 / Search Form Component -->
 {% include "components/search_form.html" with placeholder="搜尋機型名稱…" keyword=keyword %}
 
-<!-- Table -->
+<!-- 資料表格區塊 / Data Table Container -->
 <div class="card shadow-sm border-0">
 
     <div class="card-body">
@@ -46,44 +47,46 @@
 
                 <tr>
 
+                    <!-- 機型名稱 / Model Name -->
                     <td>
                         <strong>{{ model.model_name }}</strong>
                     </td>
 
+                    <!-- 供應商 / Vendor -->
                     <td>{{ model.vendor }}</td>
 
+                    <!-- 平台 / Platform -->
                     <td>{{ model.platform }}</td>
 
+                    <!-- 機型狀態標籤 / Model Status Badge -->
                     <td>
                         {% include "components/status_badge.html" with status=model.status %}
                     </td>
 
+                    <!-- 操作按鈕群組 (詳情、編輯、刪除) / Action Buttons Group (Detail, Edit, Delete) -->
                     <td>
 
                         <div class="btn-group">
 
+                            <!-- 檢視詳情 / Detail View -->
                             <a href="{% url 'model_detail' model.pk %}"
                                class="btn btn-info btn-sm"
                                title="檢視詳情">
-
                                 <i class="fa-solid fa-eye"></i>
-
                             </a>
 
+                            <!-- 編輯資料 / Edit Model -->
                             <a href="{% url 'model_edit' model.pk %}"
                                class="btn btn-warning btn-sm"
                                title="編輯">
-
                                 <i class="fa-solid fa-pen"></i>
-
                             </a>
 
+                            <!-- 刪除資料 / Delete Model -->
                             <a href="{% url 'model_delete' model.pk %}"
                                class="btn btn-danger btn-sm"
                                title="刪除">
-
                                 <i class="fa-solid fa-trash"></i>
-
                             </a>
 
                         </div>
@@ -94,6 +97,7 @@
 
             {% empty %}
 
+                <!-- 無資料時的佔位顯示元件 / Fallback Empty State Component -->
                 {% include "components/empty_state.html" with colspan=5 message="尚無 JBOD 機型資料，請先新增第一筆機型。" %}
 
             {% endfor %}
