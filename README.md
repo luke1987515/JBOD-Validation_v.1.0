@@ -1,57 +1,210 @@
 # JBOD Validation Platform
 
-Enterprise Validation Management System based on Django.
+Enterprise-level JBOD Validation Management Platform built with Django.
 
-## Features
+## 📖 Introduction
 
-- Dashboard
+JBOD Validation Platform is a web-based management system designed for validating and managing JBOD (Just a Bunch Of Disks) storage systems.
+
+The platform integrates:
+
 - Model Management
 - Firmware Management
 - Test Case Management
-- Test Plan Management
-- Validation Center
+- Validation Execution
 - Report Management
-- Executor
+- Dashboard Monitoring
+
+This project aims to simplify the validation workflow and improve engineering efficiency.
 
 ---
 
-## Environment
+## 🚀 Features
 
-- Python 3.14
-- Django 6
-- SQLite
+### Dashboard
+
+- System Overview
+- Validation Statistics
+- Running Jobs
+- Recent Firmware
+- Recent Test Results
+
+### Model Management
+
+- Add/Delete/Edit JBOD Models
+- Product Information
+- Vendor Management
+
+### Firmware Management
+
+- Upload Firmware
+- Firmware Version Control
+- Release Date Management
+
+### Test Case Management
+
+- Create Test Cases
+- Test Category
+- Test Description
+- Expected Result
+
+### Validation Execution
+
+- Execute Validation Jobs
+- Running Status
+- Progress Monitoring
+- Execution History
+
+### Report Management
+
+- Validation Reports
+- Export Results
+- Historical Records
 
 ---
 
-## Installation
+## 🏗 Project Structure
+
+```
+JBOD-Validation/
+│
+├── dashboard/
+├── firmware/
+├── models_app/
+├── testcase/
+├── executor/
+├── report/
+├── validation/
+├── user/
+│
+├── static/
+├── templates/
+├── docs/
+│
+├── manage.py
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## 💻 Development Environment
+
+| Item | Version |
+|------|----------|
+| Python | 3.14 |
+| Django | 5.x |
+| Database | SQLite3 |
+| IDE | Visual Studio Code |
+| Version Control | Git |
+| Repository | GitHub |
+
+---
+
+## ⚙ Installation
+
+### Clone Repository
 
 ```bash
-git clone <repository>
+git clone https://github.com/shingyu0205/JBOD-Validation_v.1.0.git
+```
 
-cd JBOD-Validation
+### Enter Project
 
-python -m venv venv
+```bash
+cd JBOD-Validation_v.1.0
+```
 
-venv\Scripts\activate
+### Create Virtual Environment
 
+```bash
+python -m venv .venv
+```
+
+### Activate Virtual Environment
+
+Windows
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+### Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-python manage.py migrate
+### Run Server
 
+```bash
 python manage.py runserver
 ```
 
+Open Browser
+
+```
+http://127.0.0.1:8000/
+```
+
 ---
 
-## Project Structure
+## 📂 Main Applications
+
+| App | Description |
+|------|-------------|
+| dashboard | Dashboard Homepage |
+| models_app | JBOD Model Management |
+| firmware | Firmware Management |
+| testcase | Test Case Management |
+| executor | Validation Execution |
+| report | Report Management |
+| validation | Validation Control |
+| user | User Management |
+
+---
+
+## 🎯 Future Plans
+
+- User Authentication
+- Permission Management
+- Report Export (PDF/Excel)
+- Email Notification
+- Dark Mode
+- REST API
+- Real-time Dashboard
+- Test Automation Integration
+- Jenkins CI/CD
+- Docker Deployment
+
+---
+
+## 📸 Screenshots
+
+Coming Soon...
+
+---
+
+## 📝 Version
+
+Current Version
 
 ```
-dashboard/
-firmware/
-models_app/
-testcase/
-testplan/
-validation/
-executor/
-report/
+v1.0.0
 ```
+
+---
+
+## 👨‍💻 Author
+
+**Shing-Yu Chou**
+
+GitHub
+
+https://github.com/shingyu0205
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
