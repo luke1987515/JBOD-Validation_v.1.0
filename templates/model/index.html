@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}
+Models
+{% endblock %}
+
+{% block content %}
+
+<!-- Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    {% include "components/page_header.html" with title="JBOD Models" subtitle="Manage all JBOD Models" %}
+
+    <a href="{% url 'model_add' %}" class="btn btn-primary">
+        <i class="fa-solid fa-plus me-2"></i>
+        Add Model
+    </a>
+
+</div>
+
+<!-- Search -->
+{% include "components/search_form.html" with placeholder="Search Model..." keyword=keyword %}
+
+<!-- Table -->
+<div class="card shadow-sm border-0">
+
+    <div class="card-body">
+
+        <table class="table table-hover align-middle">
+
+            <thead class="table-light">
+
+                <tr>
+                    <th>Name</th>
+                    <th>Vendor</th>
+                    <th>Platform</th>
+                    <th>Status</th>
+                    <th width="170">Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for model in models %}
+
+                <tr>
+
+                    <td>
+                        <strong>{{ model.model_name }}</strong>
+                    </td>
+
+                    <td>{{ model.vendor }}</td>
+
+                    <td>{{ model.platform }}</td>
+
+                    <td>
+                        {% include "components/status_badge.html" with status=model.status %}
+                    </td>
+
+                    <td>
+
+                        <div class="btn-group">
+
+                            <a href="{% url 'model_detail' model.pk %}"
+                               class="btn btn-info btn-sm"
+                               title="Detail">
+
+                                <i class="fa-solid fa-eye"></i>
+
+                            </a>
+
+                            <a href="{% url 'model_edit' model.pk %}"
+                               class="btn btn-warning btn-sm"
+                               title="Edit">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </a>
+
+                            <a href="{% url 'model_delete' model.pk %}"
+                               class="btn btn-danger btn-sm"
+                               title="Delete">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </a>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            {% empty %}
+
+                {% include "components/empty_state.html" with colspan=5 message="No JBOD Models Found." %}
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

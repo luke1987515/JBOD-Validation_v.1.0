@@ -1,0 +1,106 @@
+<nav class="sidebar bg-dark text-white">
+
+    <!-- Logo -->
+    <div class="sidebar-header">
+
+        <h4>
+            <i class="fa-solid fa-server me-2"></i>
+            JBOD Validation
+        </h4>
+
+        <small class="text-secondary">
+            Validation Platform
+        </small>
+
+    </div>
+
+    <hr class="text-secondary">
+
+    <!-- Dashboard -->
+    <div class="menu-title">
+        Dashboard
+    </div>
+
+    <a class="sidebar-link" href="{% url 'dashboard' %}">
+        <i class="fa-solid fa-gauge"></i>
+        Dashboard
+    </a>
+
+    <!-- Asset Management -->
+    <div class="menu-title">
+        Asset Management
+    </div>
+
+    <a class="sidebar-link" href="{% url 'model_list' %}">
+        <i class="fa-solid fa-box"></i>
+        Models
+    </a>
+
+    <a class="sidebar-link" href="{% url 'firmware_list' %}">
+        <i class="fa-solid fa-microchip"></i>
+        Firmware
+    </a>
+
+    <!-- Validation -->
+    <div class="menu-title">
+        Validation
+    </div>
+
+    <a class="sidebar-link" href="{% url 'validation_list' %}">
+        <i class="fa-solid fa-clipboard-check"></i>
+        Validation Center
+    </a>
+
+    <!-- Test Case -->
+    <a class="sidebar-link" href="{% url 'testcase:index' %}">
+        <i class="fa-solid fa-list-check"></i>
+        Test Case
+    </a>
+
+    <!-- Test Plan -->
+    <a class="sidebar-link" href="{% url 'testplan:index' %}">
+        <i class="fa-solid fa-layer-group"></i>
+        Test Plan
+    </a>
+
+    <!-- Execute -->
+    <a class="sidebar-link text-secondary" href="javascript:void(0);">
+        <i class="fa-solid fa-play"></i>
+        Execute
+        <span class="badge bg-warning text-dark ms-2">Soon</span>
+    </a>
+
+    <!-- Report -->
+    <div class="menu-title">
+        Report
+    </div>
+
+    <a class="sidebar-link text-secondary" href="javascript:void(0);">
+        <i class="fa-solid fa-file-lines"></i>
+        Report
+        <span class="badge bg-warning text-dark ms-2">Soon</span>
+    </a>
+
+    <a class="sidebar-link text-secondary" href="javascript:void(0);">
+        <i class="fa-solid fa-terminal"></i>
+        Logs
+        <span class="badge bg-warning text-dark ms-2">Soon</span>
+    </a>
+
+    <!-- System -->
+    <div class="menu-title">
+        System
+    </div>
+
+    <div class="sidebar-bottom">
+
+        <hr class="text-secondary">
+
+        <a class="sidebar-link" href="/admin/">
+            <i class="fa-solid fa-user-gear"></i>
+            Administration
+        </a>
+
+    </div>
+
+</nav>

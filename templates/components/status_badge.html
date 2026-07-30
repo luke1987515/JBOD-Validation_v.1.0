@@ -1,0 +1,65 @@
+{% if status == "ACTIVE" %}
+
+<span class="badge bg-success">
+
+    Active
+
+</span>
+
+{% elif status == "INACTIVE" %}
+
+<span class="badge bg-secondary">
+
+    Inactive
+
+</span>
+
+{% elif status == "RUNNING" %}
+
+<span class="badge bg-primary">
+
+    Running
+
+</span>
+
+{% elif status == "PASS" %}
+
+<span class="badge bg-success">
+
+    Pass
+
+</span>
+
+{% elif status == "FAIL" %}
+
+<span class="badge bg-danger">
+
+    Fail
+
+</span>
+
+{% elif status == "READY" %}
+
+<span class="badge bg-info">
+
+    Ready
+
+</span>
+
+{% elif status == "DRAFT" %}
+
+<span class="badge bg-warning text-dark">
+
+    Draft
+
+</span>
+
+{% else %}
+
+<span class="badge bg-dark">
+
+    {{ status }}
+
+</span>
+
+{% endif %}
