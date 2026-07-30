@@ -5,125 +5,86 @@
 {% endblock %}
 
 {% block content %}
-
 <div class="d-flex justify-content-between align-items-center mb-4">
-
-    <h2>{{ title }}</h2>
-
-    <a href="{% url 'model_list' %}" class="btn btn-secondary">
-
-        Back
-
+    <div>
+        <h2 class="mb-1">{{ title }}</h2>
+        <p class="text-muted mb-0">填寫 JBOD 機型的基本資料與適用韌體。</p>
+    </div>
+    <a href="{% url 'model_list' %}" class="btn btn-outline-secondary">
+        <i class="fa-solid fa-arrow-left me-2"></i>返回列表
     </a>
-
 </div>
 
-<div class="card">
+<form method="post" novalidate>
+    {% csrf_token %}
 
-    <div class="card-body">
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
 
-        <form method="post">
-
-            {% csrf_token %}
-
-            <div class="row">
-
-                <div class="col-md-6 mb-3">
-
-                    <label class="form-label">
-
-                        Model Name
-
+    <div class="card mb-4">
+        <div class="card-header py-3">
+            <i class="fa-solid fa-box me-2 text-primary"></i>基本資料
+        </div>
+        <div class="card-body p-4">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <label for="{{ form.model_name.id_for_label }}" class="form-label fw-semibold">
+                        機型名稱 <span class="text-danger">*</span>
                     </label>
-
                     {{ form.model_name }}
-
+                    {% if form.model_name.errors %}<div class="invalid-feedback d-block">{{ form.model_name.errors|striptags }}</div>{% endif %}
+                    <div class="form-text">{{ form.model_name.help_text }}</div>
                 </div>
 
-                <div class="col-md-6 mb-3">
-
-                    <label class="form-label">
-
-                        Vendor
-
+                <div class="col-md-6">
+                    <label for="{{ form.vendor.id_for_label }}" class="form-label fw-semibold">
+                        供應商 <span class="text-danger">*</span>
                     </label>
-
                     {{ form.vendor }}
-
+                    {% if form.vendor.errors %}<div class="invalid-feedback d-block">{{ form.vendor.errors|striptags }}</div>{% endif %}
                 </div>
 
-            </div>
-
-            <div class="row">
-
-                <div class="col-md-6 mb-3">
-
-                    <label class="form-label">
-
-                        Platform
-
-                    </label>
-
+                <div class="col-md-6">
+                    <label for="{{ form.platform.id_for_label }}" class="form-label fw-semibold">平台</label>
                     {{ form.platform }}
-
+                    {% if form.platform.errors %}<div class="invalid-feedback d-block">{{ form.platform.errors|striptags }}</div>{% endif %}
                 </div>
 
-                <div class="col-md-6 mb-3">
-
-                    <label class="form-label">
-
-                        Status
-
-                    </label>
-
+                <div class="col-md-6">
+                    <label for="{{ form.status.id_for_label }}" class="form-label fw-semibold">狀態</label>
                     {{ form.status }}
-
+                    {% if form.status.errors %}<div class="invalid-feedback d-block">{{ form.status.errors|striptags }}</div>{% endif %}
                 </div>
 
+                <div class="col-12">
+                    <label for="{{ form.description.id_for_label }}" class="form-label fw-semibold">說明</label>
+                    {{ form.description }}
+                    {% if form.description.errors %}<div class="invalid-feedback d-block">{{ form.description.errors|striptags }}</div>{% endif %}
+                </div>
             </div>
-
-            <div class="mb-3">
-
-                <label class="form-label">
-
-                    Firmware
-
-                </label>
-
-                {{ form.firmwares }}
-
-            </div>
-
-            <div class="mb-4">
-
-                <label class="form-label">
-
-                    Description
-
-                </label>
-
-                {{ form.description }}
-
-            </div>
-
-            <button class="btn btn-primary">
-
-                <i class="fa-solid fa-floppy-disk"></i>
-
-                Save
-
-            </button>
-
-            <a href="{% url 'model_list' %}" class="btn btn-secondary">
-
-                Cancel
-
-            </a>
-
-        </form>
-
+        </div>
     </div>
 
-</div>
+    <div class="card mb-4">
+        <div class="card-header py-3">
+            <i class="fa-solid fa-microchip me-2 text-success"></i>關聯韌體 <span class="text-muted fw-normal">(Firmware)</span>
+        </div>
+        <div class="card-body p-4">
+            <label for="{{ form.firmwares.id_for_label }}" class="form-label fw-semibold">適用韌體版本</label>
+            {{ form.firmwares }}
+            {% if form.firmwares.errors %}<div class="invalid-feedback d-block">{{ form.firmwares.errors|striptags }}</div>{% endif %}
+            <div class="form-text">{{ form.firmwares.help_text }}</div>
+        </div>
+    </div>
 
+    <div class="d-flex justify-content-end gap-2">
+        <a href="{% url 'model_list' %}" class="btn btn-outline-secondary">取消</a>
+        <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-floppy-disk me-2"></i>儲存機型
+        </button>
+    </div>
+</form>
 {% endblock %}

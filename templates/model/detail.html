@@ -1,81 +1,30 @@
 {% extends "base.html" %}
 
-{% block title %}
-Model Detail
-{% endblock %}
+{% block title %}機型詳情（Model）{% endblock %}
 
 {% block content %}
-
-<h2 class="mb-4">
-
-    Model Detail
-
-</h2>
-
-<div class="card">
-
-    <div class="card-body">
-
-        <table class="table">
-
-            <tr>
-
-                <th width="180">
-                    Model Name
-                </th>
-
-                <td>{{ model.model_name }}</td>
-
-            </tr>
-
-            <tr>
-
-                <th>Vendor</th>
-
-                <td>{{ model.vendor }}</td>
-
-            </tr>
-
-            <tr>
-
-                <th>Platform</th>
-
-                <td>{{ model.platform }}</td>
-
-            </tr>
-
-            <tr>
-
-                <th>Description</th>
-
-                <td>{{ model.description }}</td>
-
-            </tr>
-
-            <tr>
-
-                <th>Status</th>
-
-                <td>{{ model.status }}</td>
-
-            </tr>
-
-        </table>
-
-        <a href="{% url 'model_edit' model.pk %}" class="btn btn-warning">
-
-            Edit
-
-        </a>
-
-        <a href="{% url 'model_list' %}" class="btn btn-secondary">
-
-            Back
-
-        </a>
-
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="mb-1">機型詳情 <span class="fs-5 text-muted fw-normal">(Model)</span></h2>
+        <p class="text-muted mb-0">{{ model.model_name }}</p>
     </div>
-
+    <div class="d-flex gap-2">
+        <a href="{% url 'model_edit' model.pk %}" class="btn btn-primary"><i class="fa-solid fa-pen me-2"></i>編輯</a>
+        <a href="{% url 'model_list' %}" class="btn btn-outline-secondary">返回列表</a>
+    </div>
 </div>
 
+<div class="card">
+    <div class="card-body p-4">
+        <dl class="row mb-0">
+            <dt class="col-sm-3 text-muted">機型名稱</dt><dd class="col-sm-9 fw-semibold">{{ model.model_name }}</dd>
+            <dt class="col-sm-3 text-muted">供應商</dt><dd class="col-sm-9">{{ model.vendor }}</dd>
+            <dt class="col-sm-3 text-muted">平台</dt><dd class="col-sm-9">{{ model.platform|default:"—" }}</dd>
+            <dt class="col-sm-3 text-muted">說明</dt><dd class="col-sm-9">{{ model.description|default:"—"|linebreaksbr }}</dd>
+            <dt class="col-sm-3 text-muted">狀態</dt><dd class="col-sm-9">{% include "components/status_badge.html" with status=model.status %}</dd>
+            <dt class="col-sm-3 text-muted">關聯韌體 <span class="fw-normal">(Firmware)</span></dt>
+            <dd class="col-sm-9">{% for firmware in model.firmwares.all %}<span class="badge text-bg-light border me-1">{{ firmware }}</span>{% empty %}<span class="text-muted">尚未關聯韌體</span>{% endfor %}</dd>
+        </dl>
+    </div>
+</div>
 {% endblock %}

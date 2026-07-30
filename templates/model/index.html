@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Models
+機型管理（Models）
 {% endblock %}
 
 {% block content %}
@@ -9,17 +9,17 @@ Models
 <!-- Header -->
 <div class="d-flex justify-content-between align-items-center mb-4">
 
-    {% include "components/page_header.html" with title="JBOD Models" subtitle="Manage all JBOD Models" %}
+    {% include "components/page_header.html" with title="機型管理（Models）" subtitle="建立、查詢與維護 JBOD 機型資料" %}
 
     <a href="{% url 'model_add' %}" class="btn btn-primary">
         <i class="fa-solid fa-plus me-2"></i>
-        Add Model
+        新增機型
     </a>
 
 </div>
 
 <!-- Search -->
-{% include "components/search_form.html" with placeholder="Search Model..." keyword=keyword %}
+{% include "components/search_form.html" with placeholder="搜尋機型名稱…" keyword=keyword %}
 
 <!-- Table -->
 <div class="card shadow-sm border-0">
@@ -31,11 +31,11 @@ Models
             <thead class="table-light">
 
                 <tr>
-                    <th>Name</th>
-                    <th>Vendor</th>
-                    <th>Platform</th>
-                    <th>Status</th>
-                    <th width="170">Action</th>
+                    <th>機型名稱</th>
+                    <th>供應商</th>
+                    <th>平台</th>
+                    <th>狀態</th>
+                    <th width="170">操作</th>
                 </tr>
 
             </thead>
@@ -64,7 +64,7 @@ Models
 
                             <a href="{% url 'model_detail' model.pk %}"
                                class="btn btn-info btn-sm"
-                               title="Detail">
+                               title="檢視詳情">
 
                                 <i class="fa-solid fa-eye"></i>
 
@@ -72,7 +72,7 @@ Models
 
                             <a href="{% url 'model_edit' model.pk %}"
                                class="btn btn-warning btn-sm"
-                               title="Edit">
+                               title="編輯">
 
                                 <i class="fa-solid fa-pen"></i>
 
@@ -80,7 +80,7 @@ Models
 
                             <a href="{% url 'model_delete' model.pk %}"
                                class="btn btn-danger btn-sm"
-                               title="Delete">
+                               title="刪除">
 
                                 <i class="fa-solid fa-trash"></i>
 
@@ -94,7 +94,7 @@ Models
 
             {% empty %}
 
-                {% include "components/empty_state.html" with colspan=5 message="No JBOD Models Found." %}
+                {% include "components/empty_state.html" with colspan=5 message="尚無 JBOD 機型資料，請先新增第一筆機型。" %}
 
             {% endfor %}
 

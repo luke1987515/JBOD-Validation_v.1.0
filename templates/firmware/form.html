@@ -1,41 +1,68 @@
 {% extends "base.html" %}
 
+{% block title %}{{ title }}{% endblock %}
+
 {% block content %}
-
-<div class="card shadow">
-
-    <div class="card-header">
-
-        <h4>{{ title }}</h4>
-
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="mb-1">{{ title }}</h2>
+        <p class="text-muted mb-0">登錄韌體版本、發布資訊與驗證說明。</p>
     </div>
-
-    <div class="card-body">
-
-        <form method="post">
-
-            {% csrf_token %}
-
-            {{ form.as_p }}
-
-            <button class="btn btn-success">
-
-                <i class="fa-solid fa-floppy-disk"></i>
-
-                Save
-
-            </button>
-
-            <a href="{% url 'model_list' %}" class="btn btn-secondary">
-
-                Cancel
-
-            </a>
-
-        </form>
-
-    </div>
-
+    <a href="{% url 'firmware_list' %}" class="btn btn-outline-secondary"><i class="fa-solid fa-arrow-left me-2"></i>返回列表</a>
 </div>
 
+<form method="post" novalidate>
+    {% csrf_token %}
+    {% if form.non_field_errors %}<div class="alert alert-danger" role="alert">{{ form.non_field_errors }}</div>{% endif %}
+
+    <div class="card mb-4">
+        <div class="card-header py-3"><i class="fa-solid fa-microchip me-2 text-success"></i>版本資料</div>
+        <div class="card-body p-4">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <label for="{{ form.firmware_type.id_for_label }}" class="form-label fw-semibold">韌體類型 <span class="text-danger">*</span></label>
+                    {{ form.firmware_type }}
+                    {% if form.firmware_type.errors %}<div class="invalid-feedback d-block">{{ form.firmware_type.errors|striptags }}</div>{% endif %}
+                </div>
+                <div class="col-md-6">
+                    <label for="{{ form.version.id_for_label }}" class="form-label fw-semibold">版本號 <span class="text-danger">*</span></label>
+                    {{ form.version }}
+                    {% if form.version.errors %}<div class="invalid-feedback d-block">{{ form.version.errors|striptags }}</div>{% endif %}
+                    <div class="form-text">{{ form.version.help_text }}</div>
+                </div>
+                <div class="col-md-6">
+                    <label for="{{ form.vendor.id_for_label }}" class="form-label fw-semibold">供應商</label>
+                    {{ form.vendor }}
+                    {% if form.vendor.errors %}<div class="invalid-feedback d-block">{{ form.vendor.errors|striptags }}</div>{% endif %}
+                </div>
+                <div class="col-md-6">
+                    <label for="{{ form.build_number.id_for_label }}" class="form-label fw-semibold">Build 編號</label>
+                    {{ form.build_number }}
+                    {% if form.build_number.errors %}<div class="invalid-feedback d-block">{{ form.build_number.errors|striptags }}</div>{% endif %}
+                </div>
+                <div class="col-md-6">
+                    <label for="{{ form.release_date.id_for_label }}" class="form-label fw-semibold">發布日期 <span class="text-danger">*</span></label>
+                    {{ form.release_date }}
+                    {% if form.release_date.errors %}<div class="invalid-feedback d-block">{{ form.release_date.errors|striptags }}</div>{% endif %}
+                    <div class="form-text">{{ form.release_date.help_text }}</div>
+                </div>
+                <div class="col-md-6">
+                    <label for="{{ form.status.id_for_label }}" class="form-label fw-semibold">狀態</label>
+                    {{ form.status }}
+                    {% if form.status.errors %}<div class="invalid-feedback d-block">{{ form.status.errors|striptags }}</div>{% endif %}
+                </div>
+                <div class="col-12">
+                    <label for="{{ form.description.id_for_label }}" class="form-label fw-semibold">版本說明</label>
+                    {{ form.description }}
+                    {% if form.description.errors %}<div class="invalid-feedback d-block">{{ form.description.errors|striptags }}</div>{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end gap-2">
+        <a href="{% url 'firmware_list' %}" class="btn btn-outline-secondary">取消</a>
+        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk me-2"></i>儲存韌體</button>
+    </div>
+</form>
 {% endblock %}

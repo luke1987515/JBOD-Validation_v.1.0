@@ -51,7 +51,7 @@ def add_model(request):
 
             messages.success(
                 request,
-                "Model created successfully."
+                "機型已成功建立。"
             )
 
             return redirect("model_list")
@@ -65,7 +65,7 @@ def add_model(request):
         "model/form.html",
         {
             "form": form,
-            "title": "Add Model",
+            "title": "新增機型（Add Model）",
         },
     )
 
@@ -90,7 +90,7 @@ def edit_model(request, pk):
 
             messages.success(
                 request,
-                "Model updated successfully."
+                "機型已成功更新。"
             )
 
             return redirect("model_list")
@@ -106,7 +106,7 @@ def edit_model(request, pk):
         "model/form.html",
         {
             "form": form,
-            "title": "Edit Model",
+            "title": "編輯機型（Edit Model）",
         },
     )
 
@@ -140,7 +140,7 @@ def delete_model(request, pk):
 
         messages.success(
             request,
-            "Model deleted successfully."
+            "機型已成功刪除。"
         )
 
         return redirect("model_list")

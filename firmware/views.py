@@ -7,6 +7,7 @@ from .models import Firmware
 
 def index(request):
     keyword = request.GET.get("q", "").strip()
+    firmware_type = request.GET.get("type", "").strip()
 
     firmwares = Firmware.objects.all()
 
@@ -15,12 +16,17 @@ def index(request):
             version__icontains=keyword
         )
 
+    if firmware_type:
+        firmwares = firmwares.filter(firmware_type=firmware_type)
+
     return render(
         request,
         "firmware/index.html",
         {
             "firmwares": firmwares,
             "keyword": keyword,
+            "selected_type": firmware_type,
+            "firmware_types": Firmware.FirmwareType.choices,
         },
     )
 
@@ -37,7 +43,7 @@ def add_firmware(request):
 
             messages.success(
                 request,
-                "Firmware created successfully."
+                "韌體版本已成功建立。"
             )
 
             return redirect("firmware_list")
@@ -51,7 +57,7 @@ def add_firmware(request):
         "firmware/form.html",
         {
             "form": form,
-            "title": "Add Firmware",
+            "title": "新增韌體（Add Firmware）",
         },
     )
 
@@ -76,7 +82,7 @@ def edit_firmware(request, pk):
 
             messages.success(
                 request,
-                "Firmware updated successfully."
+                "韌體版本已成功更新。"
             )
 
             return redirect("firmware_list")
@@ -92,7 +98,7 @@ def edit_firmware(request, pk):
         "firmware/form.html",
         {
             "form": form,
-            "title": "Edit Firmware",
+            "title": "編輯韌體（Edit Firmware）",
         },
     )
 
@@ -126,7 +132,7 @@ def delete_firmware(request, pk):
 
         messages.success(
             request,
-            "Firmware deleted successfully."
+            "韌體版本已成功刪除。"
         )
 
         return redirect("firmware_list")

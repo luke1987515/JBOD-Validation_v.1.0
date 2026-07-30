@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}測試案例詳情（Test Case）{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div><h2 class="mb-1">測試案例詳情 <span class="fs-5 text-muted fw-normal">(Test Case)</span></h2><p class="text-muted mb-0">{{ testcase.case_id }} · {{ testcase.name }}</p></div>
+    <div class="d-flex gap-2"><a href="{% url 'testcase:edit' testcase.pk %}" class="btn btn-primary"><i class="fa-solid fa-pen me-2"></i>編輯</a><a href="{% url 'testcase:index' %}" class="btn btn-outline-secondary">返回列表</a></div>
+</div>
+<div class="card"><div class="card-body p-4"><dl class="row mb-0">
+    <dt class="col-sm-3 text-muted">測試案例編號</dt><dd class="col-sm-9 font-monospace">{{ testcase.case_id }}</dd>
+    <dt class="col-sm-3 text-muted">測試案例名稱</dt><dd class="col-sm-9 fw-semibold">{{ testcase.name }}</dd>
+    <dt class="col-sm-3 text-muted">測試分類</dt><dd class="col-sm-9">{{ testcase.get_category_display }}</dd>
+    <dt class="col-sm-3 text-muted">逾時時間</dt><dd class="col-sm-9">{{ testcase.timeout }} 秒</dd>
+    <dt class="col-sm-3 text-muted">狀態</dt><dd class="col-sm-9">{% if testcase.status == "Active" %}<span class="badge bg-success">啟用中 (Active)</span>{% else %}<span class="badge bg-secondary">已停用 (Inactive)</span>{% endif %}</dd>
+    <dt class="col-sm-3 text-muted">執行命令／指令碼</dt><dd class="col-sm-9"><pre class="bg-light border rounded p-3 mb-0"><code>{{ testcase.command }}</code></pre></dd>
+    <dt class="col-sm-3 text-muted">預期結果</dt><dd class="col-sm-9">{{ testcase.expected_result|default:"—"|linebreaksbr }}</dd>
+    <dt class="col-sm-3 text-muted">說明</dt><dd class="col-sm-9">{{ testcase.description|default:"—"|linebreaksbr }}</dd>
+</dl></div></div>
+{% endblock %}

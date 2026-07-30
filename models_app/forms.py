@@ -20,23 +20,23 @@ class JBODModelForm(forms.ModelForm):
 
             "model_name": forms.TextInput(attrs={
                 "class": "form-control",
-                "placeholder": "Model Name",
+                "placeholder": "例如：JBOD-24G4",
             }),
 
             "vendor": forms.TextInput(attrs={
                 "class": "form-control",
-                "placeholder": "Vendor",
+                "placeholder": "例如：Acme Storage",
             }),
 
             "platform": forms.TextInput(attrs={
                 "class": "form-control",
-                "placeholder": "Platform",
+                "placeholder": "例如：SAS 12Gb/s",
             }),
 
             "description": forms.Textarea(attrs={
                 "class": "form-control",
                 "rows": 4,
-                "placeholder": "Description",
+                "placeholder": "請輸入機型說明、硬體規格或驗證注意事項",
             }),
 
             "status": forms.Select(attrs={
@@ -48,4 +48,18 @@ class JBODModelForm(forms.ModelForm):
                 "size": 8,
             }),
 
+        }
+
+        labels = {
+            "model_name": "機型名稱",
+            "vendor": "供應商",
+            "platform": "平台",
+            "description": "說明",
+            "status": "狀態",
+            "firmwares": "關聯韌體",
+        }
+
+        help_texts = {
+            "model_name": "請輸入唯一的 JBOD 機型名稱。",
+            "firmwares": "可複選目前適用於此機型的 Firmware。",
         }

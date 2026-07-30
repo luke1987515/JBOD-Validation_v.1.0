@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Dashboard
+儀表板（Dashboard）
 {% endblock %}
 
 {% block content %}
@@ -10,10 +10,10 @@ Dashboard
 
     <div>
 
-        <h2 class="mb-0">Dashboard</h2>
+        <h2 class="mb-0">儀表板 <span class="fs-5 text-muted fw-normal">(Dashboard)</span></h2>
 
         <small class="text-muted">
-            JBOD Validation Platform Overview
+            JBOD 驗證作業總覽
         </small>
 
     </div>
@@ -33,7 +33,7 @@ Dashboard
                 <div>
 
                     <h6 class="text-muted mb-1">
-                        Models
+                        總機型數 (Models)
                     </h6>
 
                     <h2 class="mb-0">
@@ -59,7 +59,7 @@ Dashboard
                 <div>
 
                     <h6 class="text-muted mb-1">
-                        Firmware
+                        韌體版本數 (Firmware)
                     </h6>
 
                     <h2 class="mb-0">
@@ -85,7 +85,7 @@ Dashboard
                 <div>
 
                     <h6 class="text-muted mb-1">
-                        Test Cases
+                        測試案例數 (Test Cases)
                     </h6>
 
                     <h2 class="mb-0">
@@ -111,7 +111,7 @@ Dashboard
                 <div>
 
                     <h6 class="text-muted mb-1">
-                        Running Jobs
+                        執行中作業 (Running Jobs)
                     </h6>
 
                     <h2 class="mb-0">
@@ -138,7 +138,7 @@ Dashboard
 
         <i class="fa-solid fa-bolt"></i>
 
-        Quick Actions
+        快速操作 (Quick Actions)
 
     </div>
 
@@ -146,27 +146,27 @@ Dashboard
 
         <a href="/model/" class="btn btn-primary me-2 mb-2">
             <i class="fa-solid fa-plus"></i>
-            Add Model
+            新增機型
         </a>
 
         <a href="/firmware/" class="btn btn-success me-2 mb-2">
             <i class="fa-solid fa-microchip"></i>
-            Firmware
+            韌體管理
         </a>
 
         <a href="/testcase/" class="btn btn-warning me-2 mb-2">
             <i class="fa-solid fa-list-check"></i>
-            Test Case
+            測試案例
         </a>
 
         <a href="/testplan/" class="btn btn-info me-2 mb-2">
             <i class="fa-solid fa-layer-group"></i>
-            Test Plan
+            測試計畫
         </a>
 
         <a href="/executor/" class="btn btn-danger mb-2">
             <i class="fa-solid fa-play"></i>
-            Execute
+            執行作業
         </a>
 
     </div>
@@ -187,7 +187,7 @@ Dashboard
 
                 <i class="fa-solid fa-clock-rotate-left"></i>
 
-                Recent Execute Jobs
+                最近執行作業 (Recent Execute Jobs)
 
             </div>
 
@@ -201,9 +201,9 @@ Dashboard
 
                             <th>ID</th>
 
-                            <th>Test Plan</th>
+                            <th>測試計畫</th>
 
-                            <th>Status</th>
+                            <th>狀態</th>
 
                         </tr>
 
@@ -224,19 +224,19 @@ Dashboard
                                 {% if job.status == "RUNNING" %}
 
                                     <span class="badge bg-primary">
-                                        Running
+                                        執行中 (Running)
                                     </span>
 
                                 {% elif job.status == "PASS" %}
 
                                     <span class="badge bg-success">
-                                        PASS
+                                        通過 (PASS)
                                     </span>
 
                                 {% elif job.status == "FAIL" %}
 
                                     <span class="badge bg-danger">
-                                        FAIL
+                                        失敗 (FAIL)
                                     </span>
 
                                 {% else %}
@@ -257,7 +257,7 @@ Dashboard
 
                             <td colspan="3" class="text-center text-muted">
 
-                                No Execute Jobs
+                                尚無執行作業
 
                             </td>
 
@@ -285,7 +285,7 @@ Dashboard
 
                 <i class="fa-solid fa-microchip"></i>
 
-                Latest Firmware
+                最新韌體 (Latest Firmware)
 
             </div>
 
@@ -301,7 +301,7 @@ Dashboard
 
                         <br>
 
-                        Version {{ fw.version }}
+                        版本 {{ fw.version }}
 
                         <br>
 
@@ -317,7 +317,7 @@ Dashboard
 
                     <li class="list-group-item text-center text-muted">
 
-                        No Firmware
+                        尚無韌體資料
 
                     </li>
 

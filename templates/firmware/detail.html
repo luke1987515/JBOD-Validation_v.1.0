@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}韌體詳情（Firmware）{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="mb-1">韌體詳情 <span class="fs-5 text-muted fw-normal">(Firmware)</span></h2>
+        <p class="text-muted mb-0">{{ firmware.get_firmware_type_display }} · {{ firmware.version }}</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a href="{% url 'firmware_edit' firmware.pk %}" class="btn btn-primary"><i class="fa-solid fa-pen me-2"></i>編輯</a>
+        <a href="{% url 'firmware_list' %}" class="btn btn-outline-secondary">返回列表</a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body p-4">
+        <dl class="row mb-0">
+            <dt class="col-sm-3 text-muted">韌體類型</dt><dd class="col-sm-9">{{ firmware.get_firmware_type_display }}</dd>
+            <dt class="col-sm-3 text-muted">版本號</dt><dd class="col-sm-9 fw-semibold">{{ firmware.version }}</dd>
+            <dt class="col-sm-3 text-muted">供應商</dt><dd class="col-sm-9">{{ firmware.vendor|default:"—" }}</dd>
+            <dt class="col-sm-3 text-muted">Build 編號</dt><dd class="col-sm-9">{{ firmware.build_number|default:"—" }}</dd>
+            <dt class="col-sm-3 text-muted">發布日期</dt><dd class="col-sm-9">{{ firmware.release_date|date:"Y-m-d" }}</dd>
+            <dt class="col-sm-3 text-muted">狀態</dt><dd class="col-sm-9">{% include "components/status_badge.html" with status=firmware.status %}</dd>
+            <dt class="col-sm-3 text-muted">版本說明</dt><dd class="col-sm-9">{{ firmware.description|default:"—"|linebreaksbr }}</dd>
+        </dl>
+    </div>
+</div>
+{% endblock %}

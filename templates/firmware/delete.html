@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}刪除韌體（Firmware）{% endblock %}
+
+{% block content %}
+<div class="mx-auto" style="max-width: 680px;">
+    <div class="card border-danger">
+        <div class="card-body p-4">
+            <div class="d-flex align-items-center mb-3 text-danger"><i class="fa-solid fa-triangle-exclamation fa-2x me-3"></i><h2 class="h4 mb-0">確認刪除韌體</h2></div>
+            <p>你即將刪除 <strong>{{ firmware.get_firmware_type_display }} {{ firmware.version }}</strong>。此操作無法復原。</p>
+            <form method="post" class="d-flex justify-content-end gap-2">
+                {% csrf_token %}
+                <a href="{% url 'firmware_detail' firmware.pk %}" class="btn btn-outline-secondary">取消</a>
+                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash me-2"></i>確認刪除</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
