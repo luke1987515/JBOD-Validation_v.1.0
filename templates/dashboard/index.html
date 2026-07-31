@@ -6,329 +6,209 @@
 
 {% block content %}
 
+<!-- 頁面標題與簡介區塊 / Page Header & Overview -->
 <div class="d-flex justify-content-between align-items-center mb-4">
-
     <div>
-
         <h2 class="mb-0">儀表板 <span class="fs-5 text-muted fw-normal">(Dashboard)</span></h2>
-
         <small class="text-muted">
             JBOD 驗證作業總覽
         </small>
-
     </div>
-
 </div>
 
-<!-- Statistics -->
 
+<!-- 關鍵指標統計卡片區塊 / Key Metrics & Statistics Cards -->
 <div class="row g-4 mb-4">
 
+    <!-- 總機型數統計 / Total Models Count -->
     <div class="col-lg-3 col-md-6">
-
         <div class="card">
-
             <div class="card-body d-flex justify-content-between align-items-center">
-
                 <div>
-
                     <h6 class="text-muted mb-1">
                         總機型數 (Models)
                     </h6>
-
                     <h2 class="mb-0">
                         {{ model_count }}
                     </h2>
-
                 </div>
-
                 <i class="fa-solid fa-server fa-2x text-primary"></i>
-
             </div>
-
         </div>
-
     </div>
 
+
+    <!-- 韌體版本數統計 / Total Firmware Count -->
     <div class="col-lg-3 col-md-6">
-
         <div class="card">
-
             <div class="card-body d-flex justify-content-between align-items-center">
-
                 <div>
-
                     <h6 class="text-muted mb-1">
                         韌體版本數 (Firmware)
                     </h6>
-
                     <h2 class="mb-0">
                         {{ firmware_count }}
                     </h2>
-
                 </div>
-
                 <i class="fa-solid fa-microchip fa-2x text-success"></i>
-
             </div>
-
         </div>
-
     </div>
 
+    <!-- 測試案例數統計 / Total Test Cases Count -->
     <div class="col-lg-3 col-md-6">
-
         <div class="card">
-
             <div class="card-body d-flex justify-content-between align-items-center">
-
                 <div>
-
                     <h6 class="text-muted mb-1">
                         測試案例數 (Test Cases)
                     </h6>
-
                     <h2 class="mb-0">
                         {{ testcase_count }}
                     </h2>
-
                 </div>
-
                 <i class="fa-solid fa-vial fa-2x text-warning"></i>
-
             </div>
-
         </div>
-
     </div>
 
+    <!-- 執行中作業數統計 / Active/Running Jobs Count -->
     <div class="col-lg-3 col-md-6">
-
         <div class="card">
-
             <div class="card-body d-flex justify-content-between align-items-center">
-
                 <div>
-
                     <h6 class="text-muted mb-1">
                         執行中作業 (Running Jobs)
                     </h6>
-
                     <h2 class="mb-0">
                         {{ running_count }}
                     </h2>
-
                 </div>
-
                 <i class="fa-solid fa-play fa-2x text-danger"></i>
-
             </div>
-
         </div>
-
     </div>
 
 </div>
 
-<!-- Quick Actions -->
 
+<!-- 快速操作按鈕區塊 / Quick Action Shortcuts -->
 <div class="card mb-4">
-
     <div class="card-header">
-
         <i class="fa-solid fa-bolt"></i>
-
         快速操作 (Quick Actions)
-
     </div>
-
     <div class="card-body">
-
         <a href="/model/" class="btn btn-primary me-2 mb-2">
             <i class="fa-solid fa-plus"></i>
             新增機型
         </a>
-
         <a href="/firmware/" class="btn btn-success me-2 mb-2">
             <i class="fa-solid fa-microchip"></i>
             韌體管理
         </a>
-
         <a href="/testcase/" class="btn btn-warning me-2 mb-2">
             <i class="fa-solid fa-list-check"></i>
             測試案例
         </a>
-
         <a href="/testplan/" class="btn btn-info me-2 mb-2">
             <i class="fa-solid fa-layer-group"></i>
             測試計畫
         </a>
-
         <a href="/executor/" class="btn btn-danger mb-2">
             <i class="fa-solid fa-play"></i>
             執行作業
         </a>
-
     </div>
-
 </div>
 
-<!-- Tables -->
-
+<!-- 資料列表圖表與摘要表格區塊 / Overview Tables Section -->
 <div class="row">
 
-    <!-- Recent Execute Jobs -->
-
+    <!-- 最近執行作業清單 / Recent Execution Jobs Table -->
     <div class="col-lg-8">
-
         <div class="card h-100">
-
             <div class="card-header">
-
                 <i class="fa-solid fa-clock-rotate-left"></i>
-
                 最近執行作業 (Recent Execute Jobs)
-
             </div>
-
             <div class="card-body">
-
                 <table class="table table-hover align-middle">
-
                     <thead>
-
                         <tr>
-
                             <th>ID</th>
-
                             <th>測試計畫</th>
-
                             <th>狀態</th>
-
                         </tr>
-
                     </thead>
-
                     <tbody>
-
                     {% for job in recent_jobs %}
-
                         <tr>
-
                             <td>#{{ job.id }}</td>
-
                             <td>{{ job.testplan }}</td>
-
                             <td>
-
+                                {# 依據作業狀態渲染不同顏色的 Bootstrap Badge 標籤 / Status-dependent Bootstrap badge styling #}
                                 {% if job.status == "RUNNING" %}
-
                                     <span class="badge bg-primary">
                                         執行中 (Running)
                                     </span>
-
                                 {% elif job.status == "PASS" %}
-
                                     <span class="badge bg-success">
                                         通過 (PASS)
                                     </span>
-
                                 {% elif job.status == "FAIL" %}
-
                                     <span class="badge bg-danger">
                                         失敗 (FAIL)
                                     </span>
-
                                 {% else %}
-
                                     <span class="badge bg-secondary">
                                         {{ job.status }}
                                     </span>
-
                                 {% endif %}
-
                             </td>
-
                         </tr>
-
                     {% empty %}
-
+                        <!-- 無執行紀錄時的提示 / Fallback when no recent jobs exist -->
                         <tr>
-
                             <td colspan="3" class="text-center text-muted">
-
                                 尚無執行作業
-
                             </td>
-
                         </tr>
-
                     {% endfor %}
-
                     </tbody>
-
                 </table>
-
             </div>
-
         </div>
-
     </div>
 
-    <!-- Recent Firmware -->
-
+    <!-- 最新上傳/建立韌體列表 / Latest Firmware Updates -->
     <div class="col-lg-4">
-
         <div class="card h-100">
-
             <div class="card-header">
-
                 <i class="fa-solid fa-microchip"></i>
-
                 最新韌體 (Latest Firmware)
-
             </div>
-
             <div class="card-body">
-
                 <ul class="list-group list-group-flush">
-
                 {% for fw in recent_firmware %}
-
                     <li class="list-group-item">
-
                         <strong>{{ fw.firmware_type }}</strong>
-
                         <br>
-
                         版本 {{ fw.version }}
-
                         <br>
-
                         <small class="text-muted">
-
                             {{ fw.release_date }}
-
                         </small>
-
                     </li>
-
                 {% empty %}
-
+                    <!-- 無韌體資料時的提示 / Fallback when no firmware data exists -->
                     <li class="list-group-item text-center text-muted">
-
                         尚無韌體資料
-
                     </li>
-
                 {% endfor %}
-
                 </ul>
-
             </div>
-
         </div>
-
     </div>
 
 </div>

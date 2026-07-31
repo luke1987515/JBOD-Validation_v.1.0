@@ -14,7 +14,7 @@
             </small>
 
             <small class="text-primary fw-semibold">
-                Version v 1.0.1
+                Version v1.0.1
             </small>
 
         </div>
@@ -45,7 +45,7 @@
 
                     <i class="fa-solid fa-user me-2"></i>
 
-                    sysadmin
+                    {{ request.user.username }}
 
                 </button>
 
@@ -63,10 +63,25 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item text-danger" href="#">
-                            <i class="fa-solid fa-right-from-bracket me-2"></i>
-                            登出
-                        </a>
+
+                        <form method="post"
+                              action="{% url 'logout' %}"
+                              class="m-0">
+
+                            {% csrf_token %}
+
+                            <button
+                                type="submit"
+                                class="dropdown-item text-danger">
+
+                                <i class="fa-solid fa-right-from-bracket me-2"></i>
+
+                                登出
+
+                            </button>
+
+                        </form>
+
                     </li>
 
                 </ul>

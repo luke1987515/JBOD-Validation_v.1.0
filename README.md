@@ -185,15 +185,16 @@ Coming Soon...
 
 ---
 
-## 📝 Version
+v1.0.1 (2026/07/30)
+新增 (Added)： 新增中英文多語系切換功能。
+Added multilingual support (Traditional Chinese / English).
 
-Current Version
+優化 (Improved)： 全面優化與完善 UI 介面視覺與操作體驗。
+Comprehensively improved UI visuals and overall user experience.
 
-```
-v1.0.0 2026/07/27
-
-v1.0.1 2026/07/30
-```
+v1.0.0 (2026/07/27)
+首次發布 (Initial Release)： 系統正式上線。
+Official system launch.
 
 ---
 

@@ -135,5 +135,6 @@ STATICFILES_DIRS = [
 ]
 
 # 使用者登入與登出後的預設重定向網址 / Login and Logout redirect URL configurations
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/accounts/login/'
+LOGIN_URL = "/login/"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/login/"
