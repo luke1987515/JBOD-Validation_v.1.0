@@ -8,11 +8,22 @@ Execute Validation
 
 <div class="container-fluid">
 
-    <h2 class="mb-4">
-        <i class="fa-solid fa-play-circle"></i>
-        Execute Validation
-    </h2>
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
 
+        <h2 class="fw-bold">
+
+            <i class="fa-solid fa-play-circle me-2"></i>
+
+            Execute Validation
+
+        </h2>
+
+    </div>
+
+{% include "executor/includes/dashboard_cards.html" %}
+
+    <!-- Start Validation -->
     <div class="card shadow-sm mb-4">
 
         <div class="card-body">
@@ -23,8 +34,10 @@ Execute Validation
 
                 <div class="mb-3">
 
-                    <label class="form-label">
+                    <label class="form-label fw-semibold">
+
                         Test Plan
+
                     </label>
 
                     {{ form.testplan }}
@@ -32,10 +45,10 @@ Execute Validation
                 </div>
 
                 <button
-                    class="btn btn-primary"
-                    type="submit">
+                    type="submit"
+                    class="btn btn-primary">
 
-                    <i class="fa-solid fa-play"></i>
+                    <i class="fa-solid fa-play me-2"></i>
 
                     Start Validation
 
@@ -47,92 +60,40 @@ Execute Validation
 
     </div>
 
-    <div class="card shadow-sm">
+    <!-- Execute Job Table -->
+    {% include "executor/includes/execute_table.html" %}
 
-        <div class="card-header">
-
-            Recent Execute Jobs
-
-        </div>
-
-        <div class="card-body">
-
-            <table class="table table-hover">
-
-                <thead>
-
-                    <tr>
-
-                        <th>ID</th>
-
-                        <th>Test Plan</th>
-
-                        <th>Status</th>
-
-                        <th>Progress</th>
-
-                        <th>Created</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                {% for job in jobs %}
-
-                    <tr>
-
-                        <td>{{ job.id }}</td>
-
-                        <td>{{ job.testplan }}</td>
-
-                        <td>
-
-                            <span class="badge bg-secondary">
-
-                                {{ job.status }}
-
-                            </span>
-
-                        </td>
-
-                        <td>
-
-                            {{ job.progress }} %
-
-                        </td>
-
-                        <td>
-
-                            {{ job.created_at|date:"Y-m-d H:i" }}
-
-                        </td>
-
-                    </tr>
-
-                {% empty %}
-
-                    <tr>
-
-                        <td colspan="5" class="text-center">
-
-                            No Execute Jobs
-
-                        </td>
-
-                    </tr>
-
-                {% endfor %}
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </div>
+    <!-- Stop Modal -->
+    {% include "executor/includes/stop_modal.html" %}
 
 </div>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const stopButtons = document.querySelectorAll(".stop-btn");
+
+    const stopForm = document.getElementById("stopForm");
+
+    stopButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const jobId = this.dataset.jobId;
+
+            stopForm.action = `/executor/${jobId}/stop/`;
+
+        });
+
+    });
+
+});
+
+</script>
 
 {% endblock %}

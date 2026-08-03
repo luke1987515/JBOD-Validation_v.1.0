@@ -1,0 +1,200 @@
+<div class="card shadow-sm">
+
+    <div class="card-header d-flex justify-content-between align-items-center">
+
+        <strong>
+
+            <i class="fa-solid fa-list-check me-2"></i>
+
+            Recent Execute Jobs
+
+        </strong>
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-hover align-middle">
+
+            <thead>
+
+                <tr>
+
+                    <th width="80">
+                        ID
+                    </th>
+
+                    <th>
+                        Test Plan
+                    </th>
+
+                    <th width="120">
+                        Status
+                    </th>
+
+                    <th width="180">
+                        Progress
+                    </th>
+
+                    <th width="180">
+                        Created
+                    </th>
+
+                    <th width="180">
+                        Action
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for job in jobs %}
+
+                <tr>
+
+                    <td>
+
+                        {{ job.id }}
+
+                    </td>
+
+                    <td>
+
+                        {{ job.testplan }}
+
+                    </td>
+
+                    <td>
+
+                        {% if job.status == "RUNNING" %}
+
+                            <span class="badge bg-success">
+
+                                Running
+
+                            </span>
+
+                        {% elif job.status == "PASS" %}
+
+                            <span class="badge bg-primary">
+
+                                Pass
+
+                            </span>
+
+                        {% elif job.status == "FAIL" %}
+
+                            <span class="badge bg-danger">
+
+                                Fail
+
+                            </span>
+
+                        {% elif job.status == "STOP" %}
+
+                            <span class="badge bg-dark">
+
+                                Stop
+
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-secondary">
+
+                                Pending
+
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+
+                        <div class="progress" style="height:22px;">
+
+                            <div
+                                class="progress-bar"
+
+                                {% if job.status == "RUNNING" %}
+                                    class="progress-bar bg-success"
+                                {% elif job.status == "PASS" %}
+                                    class="progress-bar bg-primary"
+                                {% elif job.status == "FAIL" %}
+                                    class="progress-bar bg-danger"
+                                {% elif job.status == "STOP" %}
+                                    class="progress-bar bg-dark"
+                                {% endif %}
+
+                                role="progressbar"
+
+                                style="width: {{ job.progress }}%;">
+
+                                {{ job.progress }}%
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+                    <td>
+
+                        {{ job.created_at|date:"Y-m-d H:i" }}
+
+                    </td>
+
+                    <td>
+
+                        <button
+                            type="button"
+                            class="btn btn-sm btn-outline-primary"
+                            title="Coming Soon"
+                            disabled>
+
+                            <i class="fa-solid fa-eye"></i>
+
+                        </button>
+
+                        {% if job.status == "RUNNING" %}
+
+                            <button
+                                class="btn btn-sm btn-outline-danger ms-1 stop-btn"
+                                data-job-id="{{ job.id }}">
+
+                                <i class="fa-solid fa-stop"></i>
+
+                            </button>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+            {% empty %}
+
+                <tr>
+
+                    <td
+                        colspan="6"
+                        class="text-center text-muted py-4">
+
+                        No Execute Jobs
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
