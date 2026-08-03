@@ -46,30 +46,28 @@
         驗證作業
     </div>
 
-    <span class="sidebar-link text-secondary" aria-disabled="true">
+    <!-- Validation Center -->
+    <a class="sidebar-link" href="{% url 'validation:index' %}">
         <i class="fa-solid fa-clipboard-check"></i>
         驗證中心 (Validation Center)
-        <span class="badge bg-warning text-dark ms-2">即將推出 Coming soon</span>
-    </span>
+    </a>
 
-    <!-- Test Case -->
+    <!-- Test Cases -->
     <a class="sidebar-link" href="{% url 'testcase:index' %}">
         <i class="fa-solid fa-list-check"></i>
         測試案例 (Test Cases)
     </a>
 
-    <!-- Test Plan -->
-    <span class="sidebar-link text-secondary" aria-disabled="true">
+    <!-- Test Plans -->
+    <a class="sidebar-link" href="{% url 'testplan:index' %}">
         <i class="fa-solid fa-layer-group"></i>
         測試計畫 (Test Plans)
-        <span class="badge bg-warning text-dark ms-2">即將推出 Coming soon</span>
-    </span>
+    </a>
 
     <!-- Execute -->
-    <a class="sidebar-link text-secondary" href="javascript:void(0);">
+    <a class="sidebar-link" href="{% url 'executor:index' %}">
         <i class="fa-solid fa-play"></i>
         執行作業 (Execute)
-        <span class="badge bg-warning text-dark ms-2">即將推出 Coming soon</span>
     </a>
 
     <!-- Report -->
@@ -80,13 +78,20 @@
     <a class="sidebar-link text-secondary" href="javascript:void(0);">
         <i class="fa-solid fa-file-lines"></i>
         報告 (Reports)
-        <span class="badge bg-warning text-dark ms-2">即將推出 Coming soon</span>
+
+        <span class="badge bg-warning text-dark ms-2">
+            Coming Soon
+        </span>
     </a>
 
+    <!-- Logs -->
     <a class="sidebar-link text-secondary" href="javascript:void(0);">
         <i class="fa-solid fa-terminal"></i>
         日誌 (Logs)
-        <span class="badge bg-warning text-dark ms-2">即將推出 Coming soon</span>
+
+        <span class="badge bg-warning text-dark ms-2">
+            Coming Soon
+        </span>
     </a>
 
     <!-- System -->

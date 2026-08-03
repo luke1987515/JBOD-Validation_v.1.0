@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="fw-bold">
+                <i class="fa-solid fa-clipboard-list me-2"></i>
+                {{ title }}
+            </h2>
+
+            <p class="text-muted mb-0">
+                Create or edit a JBOD Validation Test Plan.
+            </p>
+
+        </div>
+
+        <a href="{% url 'testplan:index' %}"
+           class="btn btn-outline-secondary">
+
+            <i class="fa-solid fa-arrow-left me-2"></i>
+
+            Back
+
+        </a>
+
+    </div>
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        <!-- Basic Information -->
+        <div class="card shadow-sm border-0 mb-4">
+
+            <div class="card-header bg-primary text-white">
+
+                <i class="fa-solid fa-circle-info me-2"></i>
+
+                Basic Information
+
+            </div>
+
+            <div class="card-body">
+
+                <!-- Name -->
+
+                <div class="mb-4">
+
+                    <label class="form-label fw-bold">
+
+                        Test Plan Name
+                        <span class="text-danger">*</span>
+
+                    </label>
+
+                    {{ form.name }}
+
+                    {% if form.name.help_text %}
+                        <div class="form-text">
+                            {{ form.name.help_text }}
+                        </div>
+                    {% endif %}
+
+                </div>
+
+                <div class="row">
+
+                    <!-- Model -->
+
+                    <div class="col-lg-6">
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-bold">
+
+                                JBOD Model
+                                <span class="text-danger">*</span>
+
+                            </label>
+
+                            {{ form.model }}
+
+                        </div>
+
+                    </div>
+
+                    <!-- Firmware -->
+
+                    <div class="col-lg-6">
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-bold">
+
+                                Firmware Version
+                                <span class="text-danger">*</span>
+
+                            </label>
+
+                            {{ form.firmware }}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Test Cases -->
+
+        <div class="card shadow-sm border-0 mb-4">
+
+            <div class="card-header bg-success text-white">
+
+                <i class="fa-solid fa-list-check me-2"></i>
+
+                Test Cases
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="row">
+
+                    {% for checkbox in form.testcases %}
+
+                        <div class="col-md-6 mb-2">
+
+                            <div class="form-check">
+
+                                {{ checkbox.tag }}
+
+                                <label
+                                    class="form-check-label"
+                                    for="{{ checkbox.id_for_label }}">
+
+                                    {{ checkbox.choice_label }}
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+                {% if form.testcases.help_text %}
+
+                    <div class="form-text mt-3">
+
+                        <i class="fa-solid fa-circle-info me-2"></i>
+
+                        {{ form.testcases.help_text }}
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <!-- Description -->
+
+        <div class="card shadow-sm border-0 mb-4">
+
+            <div class="card-header bg-secondary text-white">
+
+                <i class="fa-solid fa-file-lines me-2"></i>
+
+                Description
+
+            </div>
+
+            <div class="card-body">
+
+                {{ form.description }}
+
+            </div>
+
+        </div>
+
+        <!-- Action Buttons -->
+
+        <div class="d-flex justify-content-end gap-2">
+
+            <a href="{% url 'testplan:index' %}"
+               class="btn btn-outline-secondary">
+
+                <i class="fa-solid fa-xmark me-2"></i>
+
+                Cancel
+
+            </a>
+
+            <button
+                type="submit"
+                class="btn btn-primary">
+
+                <i class="fa-solid fa-floppy-disk me-2"></i>
+
+                Save Test Plan
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

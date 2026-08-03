@@ -66,7 +66,7 @@ def add_validation(request):
             )
 
             return redirect(
-                "validation_list"
+                "validation:index"
             )
 
     else:
@@ -110,7 +110,7 @@ def edit_validation(request, pk):
             )
 
             return redirect(
-                "validation_list"
+                "validation:index"
             )
 
     else:
@@ -171,7 +171,7 @@ def delete_validation(request, pk):
         )
 
         return redirect(
-            "validation_list"
+            "validation:index"
         )
 
     return render(

@@ -27,4 +27,6 @@ urlpatterns = [
 
     # Validation
     path("validation/", include("validation.urls")),
+
+    path("executor/", include("executor.urls")),
 ]
