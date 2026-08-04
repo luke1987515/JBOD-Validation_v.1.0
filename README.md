@@ -184,6 +184,20 @@ http://127.0.0.1:8000/
 Coming Soon...
 
 ---
+v1.1.0 (2026/08/04)
+Features
+
+- Dashboard
+- Model Management
+- Firmware Management
+- Validation Center
+- Execute Validation
+- Execute Job Detail
+- Pending / Running / Stop / Retry workflow
+- Test Plan Management
+- Test Case Management
+
+
 v1.0.2 (2026/07/31)
 新增 : login 登入畫面
 
