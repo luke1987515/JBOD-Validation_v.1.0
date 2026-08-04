@@ -8,62 +8,72 @@ Execute Validation
 
 <div class="container-fluid">
 
+    <!-- ========================= -->
     <!-- Page Header -->
+    <!-- ========================= -->
+
     <div class="d-flex justify-content-between align-items-center mb-4">
 
-        <h2 class="fw-bold">
+        <div>
 
-            <i class="fa-solid fa-play-circle me-2"></i>
+            <h2 class="fw-bold mb-1">
 
-            Execute Validation
+                <i class="fa-solid fa-play-circle me-2 text-primary"></i>
 
-        </h2>
+                Execute Validation
 
-    </div>
+            </h2>
 
-{% include "executor/includes/dashboard_cards.html" %}
+            <p class="text-muted mb-0">
 
-    <!-- Start Validation -->
-    <div class="card shadow-sm mb-4">
+                執行驗證中心
 
-        <div class="card-body">
-
-            <form method="post">
-
-                {% csrf_token %}
-
-                <div class="mb-3">
-
-                    <label class="form-label fw-semibold">
-
-                        Test Plan
-
-                    </label>
-
-                    {{ form.testplan }}
-
-                </div>
-
-                <button
-                    type="submit"
-                    class="btn btn-primary">
-
-                    <i class="fa-solid fa-play me-2"></i>
-
-                    Start Validation
-
-                </button>
-
-            </form>
+            </p>
 
         </div>
 
     </div>
 
-    <!-- Execute Job Table -->
+    <!-- ========================= -->
+    <!-- Dashboard Cards -->
+    <!-- ========================= -->
+
+    {% include "executor/includes/dashboard_cards.html" %}
+
+    <!-- ========================= -->
+    <!-- Current Running + Start Validation -->
+    <!-- ========================= -->
+
+    <div class="row mb-4">
+
+        <!-- Current Running -->
+
+        <div class="col-xl-8 col-lg-7">
+
+            {% include "executor/includes/current_running.html" %}
+
+        </div>
+
+        <!-- Start Validation -->
+
+        <div class="col-xl-4 col-lg-5">
+
+            {% include "executor/includes/start_validation.html" %}
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- Execute Jobs Table -->
+    <!-- ========================= -->
+
     {% include "executor/includes/execute_table.html" %}
 
-    <!-- Stop Modal -->
+    <!-- ========================= -->
+    <!-- Stop Validation Modal -->
+    <!-- ========================= -->
+
     {% include "executor/includes/stop_modal.html" %}
 
 </div>
@@ -76,21 +86,43 @@ Execute Validation
 
 document.addEventListener("DOMContentLoaded", function () {
 
+    // ===========================
+    // Bootstrap Tooltip
+    // ===========================
+
+    const tooltipTriggerList = document.querySelectorAll(
+        '[data-bs-toggle="tooltip"]'
+    );
+
+    tooltipTriggerList.forEach(function (element) {
+
+        new bootstrap.Tooltip(element);
+
+    });
+
+    // ===========================
+    // Stop Validation Modal
+    // ===========================
+
     const stopButtons = document.querySelectorAll(".stop-btn");
 
     const stopForm = document.getElementById("stopForm");
 
-    stopButtons.forEach(function (button) {
+    if (stopButtons.length > 0 && stopForm) {
 
-        button.addEventListener("click", function () {
+        stopButtons.forEach(function (button) {
 
-            const jobId = this.dataset.jobId;
+            button.addEventListener("click", function () {
 
-            stopForm.action = `/executor/${jobId}/stop/`;
+                const jobId = this.dataset.jobId;
+
+                stopForm.action = `/executor/${jobId}/stop/`;
+
+            });
 
         });
 
-    });
+    }
 
 });
 

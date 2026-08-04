@@ -1,0 +1,131 @@
+<div class="card shadow-sm h-100">
+
+    <div class="card-header">
+
+        <strong>
+
+            <i class="fa-solid fa-chart-line me-2"></i>
+
+            Progress
+
+        </strong>
+
+    </div>
+
+    <div class="card-body">
+
+        <!-- Progress Percentage -->
+
+        <div class="d-flex justify-content-between mb-2">
+
+            <span>
+
+                Current Progress
+
+            </span>
+
+            <strong>
+
+                {{ job.progress }}%
+
+            </strong>
+
+        </div>
+
+        <!-- Progress Bar -->
+
+        <div class="progress mb-4" style="height: 24px;">
+
+            <div
+                class="progress-bar progress-bar-striped {% if job.status == 'RUNNING' %}progress-bar-animated bg-success{% elif job.status == 'PASS' %}bg-primary{% elif job.status == 'FAIL' %}bg-danger{% elif job.status == 'STOP' %}bg-dark{% else %}bg-secondary{% endif %}"
+                role="progressbar"
+                style="width: {{ job.progress }}%;"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="{{ job.progress }}">
+
+                {{ job.progress }}%
+
+            </div>
+
+        </div>
+
+        <!-- Current Status -->
+
+        <div class="row text-center">
+
+            <div class="col-6">
+
+                <h6 class="text-muted">
+
+                    Status
+
+                </h6>
+
+                {% if job.status == "RUNNING" %}
+
+                    <span class="badge bg-success">
+
+                        <i class="fa-solid fa-spinner fa-spin me-1"></i>
+
+                        RUNNING
+
+                    </span>
+
+                {% elif job.status == "PASS" %}
+
+                    <span class="badge bg-primary">
+
+                        PASS
+
+                    </span>
+
+                {% elif job.status == "FAIL" %}
+
+                    <span class="badge bg-danger">
+
+                        FAIL
+
+                    </span>
+
+                {% elif job.status == "STOP" %}
+
+                    <span class="badge bg-dark">
+
+                        STOP
+
+                    </span>
+
+                {% else %}
+
+                    <span class="badge bg-secondary">
+
+                        PENDING
+
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+            <div class="col-6">
+
+                <h6 class="text-muted">
+
+                    Execute ID
+
+                </h6>
+
+                <strong>
+
+                    #{{ job.id }}
+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

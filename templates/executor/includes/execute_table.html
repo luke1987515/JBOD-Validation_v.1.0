@@ -2,198 +2,280 @@
 
     <div class="card-header d-flex justify-content-between align-items-center">
 
-        <strong>
+        <h5 class="mb-0">
 
             <i class="fa-solid fa-list-check me-2"></i>
 
             Recent Execute Jobs
 
-        </strong>
+        </h5>
+
+        <span class="badge bg-primary">
+
+            {{ jobs|length }} Jobs
+
+        </span>
 
     </div>
 
-    <div class="card-body">
+    <div class="card-body p-0">
 
-        <table class="table table-hover align-middle">
+        <div class="table-responsive">
 
-            <thead>
+            <table class="table table-hover align-middle mb-0">
 
-                <tr>
+                <thead class="table-light">
 
-                    <th width="80">
-                        ID
-                    </th>
+                    <tr>
 
-                    <th>
-                        Test Plan
-                    </th>
+                        <th width="80">
+                            ID
+                        </th>
 
-                    <th width="120">
-                        Status
-                    </th>
+                        <th>
+                            Test Plan
+                        </th>
 
-                    <th width="180">
-                        Progress
-                    </th>
+                        <th width="140">
+                            Status
+                        </th>
 
-                    <th width="180">
-                        Created
-                    </th>
+                        <th width="220">
+                            Progress
+                        </th>
 
-                    <th width="180">
-                        Action
-                    </th>
+                        <th width="180">
+                            Created
+                        </th>
 
-                </tr>
+                        <th width="220" class="text-center">
+                            Action
+                        </th>
 
-            </thead>
+                    </tr>
 
-            <tbody>
+                </thead>
 
-            {% for job in jobs %}
+                <tbody>
 
-                <tr>
+                {% for job in jobs %}
 
-                    <td>
+                    <tr>
 
-                        {{ job.id }}
+                        <!-- Job ID -->
 
-                    </td>
+                        <td>
 
-                    <td>
+                            <strong>
 
-                        {{ job.testplan }}
+                                #{{ job.id }}
 
-                    </td>
+                            </strong>
 
-                    <td>
+                        </td>
 
-                        {% if job.status == "RUNNING" %}
+                        <!-- Test Plan -->
 
-                            <span class="badge bg-success">
+                        <td>
 
-                                Running
+                            {{ job.testplan }}
 
-                            </span>
+                        </td>
 
-                        {% elif job.status == "PASS" %}
+                        <!-- Status -->
 
-                            <span class="badge bg-primary">
+                        <td>
 
-                                Pass
+                            {% if job.status == "RUNNING" %}
 
-                            </span>
+                                <span class="badge bg-success">
 
-                        {% elif job.status == "FAIL" %}
+                                    <i class="fa-solid fa-spinner fa-spin me-1"></i>
 
-                            <span class="badge bg-danger">
+                                    Running
 
-                                Fail
+                                </span>
 
-                            </span>
+                            {% elif job.status == "PASS" %}
 
-                        {% elif job.status == "STOP" %}
+                                <span class="badge bg-primary">
 
-                            <span class="badge bg-dark">
+                                    <i class="fa-solid fa-circle-check me-1"></i>
 
-                                Stop
+                                    Pass
 
-                            </span>
+                                </span>
 
-                        {% else %}
+                            {% elif job.status == "FAIL" %}
 
-                            <span class="badge bg-secondary">
+                                <span class="badge bg-danger">
 
-                                Pending
+                                    <i class="fa-solid fa-circle-xmark me-1"></i>
 
-                            </span>
+                                    Fail
 
-                        {% endif %}
+                                </span>
 
-                    </td>
+                            {% elif job.status == "STOP" %}
 
-                    <td>
+                                <span class="badge bg-dark">
 
-                        <div class="progress" style="height:22px;">
+                                    <i class="fa-solid fa-stop me-1"></i>
 
-                            <div
-                                class="progress-bar"
+                                    Stop
 
-                                {% if job.status == "RUNNING" %}
-                                    class="progress-bar bg-success"
-                                {% elif job.status == "PASS" %}
-                                    class="progress-bar bg-primary"
-                                {% elif job.status == "FAIL" %}
-                                    class="progress-bar bg-danger"
-                                {% elif job.status == "STOP" %}
-                                    class="progress-bar bg-dark"
-                                {% endif %}
+                                </span>
 
-                                role="progressbar"
+                            {% else %}
 
-                                style="width: {{ job.progress }}%;">
+                                <span class="badge bg-secondary">
 
-                                {{ job.progress }}%
+                                    <i class="fa-solid fa-clock me-1"></i>
+
+                                    Pending
+
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <!-- Progress -->
+
+                        <td>
+
+                            <div class="progress" style="height:22px;">
+
+                                <div
+                                    class="progress-bar {% if job.status == 'RUNNING' %}bg-success progress-bar-striped progress-bar-animated{% elif job.status == 'PASS' %}bg-primary{% elif job.status == 'FAIL' %}bg-danger{% elif job.status == 'STOP' %}bg-dark{% else %}bg-secondary{% endif %}"
+                                    role="progressbar"
+                                    style="width: {{ job.progress }}%;"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                    aria-valuenow="{{ job.progress }}">
+
+                                    {{ job.progress }}%
+
+                                </div>
 
                             </div>
 
-                        </div>
+                        </td>
 
-                    </td>
+                        <!-- Created -->
 
-                    <td>
+                        <td>
 
-                        {{ job.created_at|date:"Y-m-d H:i" }}
+                            {{ job.created_at|date:"Y-m-d H:i" }}
 
-                    </td>
+                        </td>
 
-                    <td>
+                        <!-- Action -->
 
-                        <button
-                            type="button"
-                            class="btn btn-sm btn-outline-primary"
-                            title="Coming Soon"
-                            disabled>
+                        <td class="text-center">
 
-                            <i class="fa-solid fa-eye"></i>
+                            <!-- Execute / Retry -->
 
-                        </button>
+                            {% if job.status == "PENDING" or job.status == "STOP" or job.status == "FAIL" %}
 
-                        {% if job.status == "RUNNING" %}
+                                <form
+                                    method="post"
+                                    action="{% url 'executor:start' job.id %}"
+                                    class="d-inline">
 
-                            <button
-                                class="btn btn-sm btn-outline-danger ms-1 stop-btn"
-                                data-job-id="{{ job.id }}">
+                                    {% csrf_token %}
 
-                                <i class="fa-solid fa-stop"></i>
+                                    <button
+                                        type="submit"
+                                        class="btn btn-sm {% if job.status == 'PENDING' %}btn-success{% else %}btn-warning{% endif %}"
+                                        data-bs-toggle="tooltip"
+                                        title="{% if job.status == 'PENDING' %}Execute Validation{% else %}Retry Validation{% endif %}">
 
-                            </button>
+                                        {% if job.status == "PENDING" %}
 
-                        {% endif %}
+                                            <i class="fa-solid fa-play"></i>
 
-                    </td>
+                                        {% else %}
 
-                </tr>
+                                            <i class="fa-solid fa-rotate-right"></i>
 
-            {% empty %}
+                                        {% endif %}
 
-                <tr>
+                                    </button>
 
-                    <td
-                        colspan="6"
-                        class="text-center text-muted py-4">
+                                </form>
 
-                        No Execute Jobs
+                            {% endif %}
 
-                    </td>
+                            <!-- View -->
 
-                </tr>
+                            <a
+                                href="{% url 'executor:detail' job.id %}"
+                                class="btn btn-sm btn-outline-primary ms-1"
+                                data-bs-toggle="tooltip"
+                                title="View Detail">
 
-            {% endfor %}
+                                <i class="fa-solid fa-eye"></i>
 
-            </tbody>
+                            </a>
 
-        </table>
+                            <!-- Stop -->
+
+                            {% if job.status == "RUNNING" %}
+
+                                <button
+                                    type="button"
+                                    class="btn btn-sm btn-outline-danger ms-1 stop-btn"
+                                    data-job-id="{{ job.id }}"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#stopModal"
+                                    title="Stop Validation">
+
+                                    <i class="fa-solid fa-stop"></i>
+
+                                </button>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                {% empty %}
+
+                    <tr>
+
+                        <td
+                            colspan="6"
+                            class="text-center py-5 text-muted">
+
+                            <i class="fa-solid fa-inbox fa-3x text-secondary mb-3"></i>
+
+                            <h5 class="mb-2">
+
+                                No Execute Jobs
+
+                            </h5>
+
+                            <p class="mb-0">
+
+                                Please click
+                                <strong>Start Validation</strong>
+                                to create a new Execute Job.
+
+                            </p>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
 
     </div>
 

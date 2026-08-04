@@ -1,0 +1,91 @@
+<div class="card shadow-sm">
+
+    <div class="card-header">
+
+        <strong>
+
+            <i class="fa-solid fa-layer-group me-2"></i>
+
+            Test Plan Information
+
+        </strong>
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-borderless align-middle mb-0">
+
+            <tbody>
+
+                <tr>
+
+                    <th width="220">
+
+                        Test Plan
+
+                    </th>
+
+                    <td>
+
+                        {{ job.testplan.name }}
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+
+                        Model
+
+                    </th>
+
+                    <td>
+
+                        {{ job.testplan.model }}
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+
+                        Firmware
+
+                    </th>
+
+                    <td>
+
+                        {{ job.testplan.firmware }}
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+
+                        Description
+
+                    </th>
+
+                    <td>
+
+                        {{ job.testplan.description|default:"-" }}
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

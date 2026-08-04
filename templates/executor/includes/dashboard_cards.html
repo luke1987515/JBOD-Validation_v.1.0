@@ -1,33 +1,37 @@
-<div class="row mb-4">
+<div class="row g-4 mb-4">
 
     <!-- Running -->
-    <div class="col-lg-3 col-md-6 mb-3">
+    <div class="col-lg col-md-6">
 
-        <div class="card border-success shadow-sm">
+        <div class="card shadow-sm border-0 h-100">
 
-            <div class="card-body">
+            <div class="card-body d-flex justify-content-between align-items-center">
 
-                <div class="d-flex justify-content-between align-items-center">
+                <div>
 
-                    <div>
+                    <div class="text-success fw-bold">
 
-                        <h6 class="text-success mb-2">
-
-                            Running Jobs
-
-                        </h6>
-
-                        <h2 class="fw-bold mb-0">
-
-                            {{ running_count }}
-
-                        </h2>
+                        Running
 
                     </div>
 
-                    <i
-                        class="fa-solid fa-play fa-2x text-success">
-                    </i>
+                    <div class="text-muted small">
+
+                        執行中
+
+                    </div>
+
+                    <h1 class="mt-2 mb-0 fw-bold">
+
+                        {{ running_count }}
+
+                    </h1>
+
+                </div>
+
+                <div class="display-5 text-success">
+
+                    <i class="fa-solid fa-play"></i>
 
                 </div>
 
@@ -37,34 +41,38 @@
 
     </div>
 
-    <!-- Pass -->
-    <div class="col-lg-3 col-md-6 mb-3">
+    <!-- Pending -->
+    <div class="col-lg col-md-6">
 
-        <div class="card border-primary shadow-sm">
+        <div class="card shadow-sm border-0 h-100">
 
-            <div class="card-body">
+            <div class="card-body d-flex justify-content-between align-items-center">
 
-                <div class="d-flex justify-content-between align-items-center">
+                <div>
 
-                    <div>
+                    <div class="text-warning fw-bold">
 
-                        <h6 class="text-primary mb-2">
-
-                            Passed Jobs
-
-                        </h6>
-
-                        <h2 class="fw-bold mb-0">
-
-                            {{ pass_count }}
-
-                        </h2>
+                        Pending
 
                     </div>
 
-                    <i
-                        class="fa-solid fa-circle-check fa-2x text-primary">
-                    </i>
+                    <div class="text-muted small">
+
+                        等待中
+
+                    </div>
+
+                    <h1 class="mt-2 mb-0 fw-bold">
+
+                        {{ pending_count }}
+
+                    </h1>
+
+                </div>
+
+                <div class="display-5 text-warning">
+
+                    <i class="fa-solid fa-clock"></i>
 
                 </div>
 
@@ -74,34 +82,38 @@
 
     </div>
 
-    <!-- Fail -->
-    <div class="col-lg-3 col-md-6 mb-3">
+    <!-- Passed -->
+    <div class="col-lg col-md-6">
 
-        <div class="card border-danger shadow-sm">
+        <div class="card shadow-sm border-0 h-100">
 
-            <div class="card-body">
+            <div class="card-body d-flex justify-content-between align-items-center">
 
-                <div class="d-flex justify-content-between align-items-center">
+                <div>
 
-                    <div>
+                    <div class="text-primary fw-bold">
 
-                        <h6 class="text-danger mb-2">
-
-                            Failed Jobs
-
-                        </h6>
-
-                        <h2 class="fw-bold mb-0">
-
-                            {{ fail_count }}
-
-                        </h2>
+                        Passed
 
                     </div>
 
-                    <i
-                        class="fa-solid fa-circle-xmark fa-2x text-danger">
-                    </i>
+                    <div class="text-muted small">
+
+                        已完成
+
+                    </div>
+
+                    <h1 class="mt-2 mb-0 fw-bold">
+
+                        {{ pass_count }}
+
+                    </h1>
+
+                </div>
+
+                <div class="display-5 text-primary">
+
+                    <i class="fa-solid fa-circle-check"></i>
 
                 </div>
 
@@ -111,34 +123,79 @@
 
     </div>
 
-    <!-- Stop -->
-    <div class="col-lg-3 col-md-6 mb-3">
+    <!-- Failed -->
+    <div class="col-lg col-md-6">
 
-        <div class="card border-dark shadow-sm">
+        <div class="card shadow-sm border-0 h-100">
 
-            <div class="card-body">
+            <div class="card-body d-flex justify-content-between align-items-center">
 
-                <div class="d-flex justify-content-between align-items-center">
+                <div>
 
-                    <div>
+                    <div class="text-danger fw-bold">
 
-                        <h6 class="text-dark mb-2">
-
-                            Stopped Jobs
-
-                        </h6>
-
-                        <h2 class="fw-bold mb-0">
-
-                            {{ stop_count }}
-
-                        </h2>
+                        Failed
 
                     </div>
 
-                    <i
-                        class="fa-solid fa-stop fa-2x text-dark">
-                    </i>
+                    <div class="text-muted small">
+
+                        失敗
+
+                    </div>
+
+                    <h1 class="mt-2 mb-0 fw-bold">
+
+                        {{ fail_count }}
+
+                    </h1>
+
+                </div>
+
+                <div class="display-5 text-danger">
+
+                    <i class="fa-solid fa-circle-xmark"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Stopped -->
+    <div class="col-lg col-md-6">
+
+        <div class="card shadow-sm border-0 h-100">
+
+            <div class="card-body d-flex justify-content-between align-items-center">
+
+                <div>
+
+                    <div class="text-dark fw-bold">
+
+                        Stopped
+
+                    </div>
+
+                    <div class="text-muted small">
+
+                        已停止
+
+                    </div>
+
+                    <h1 class="mt-2 mb-0 fw-bold">
+
+                        {{ stop_count }}
+
+                    </h1>
+
+                </div>
+
+                <div class="display-5 text-dark">
+
+                    <i class="fa-solid fa-stop"></i>
 
                 </div>
 

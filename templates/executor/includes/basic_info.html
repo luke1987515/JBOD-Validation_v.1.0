@@ -1,0 +1,157 @@
+<div class="card shadow-sm h-100">
+
+    <div class="card-header">
+
+        <strong>
+
+            <i class="fa-solid fa-circle-info me-2"></i>
+
+            Basic Information
+
+        </strong>
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-borderless align-middle mb-0">
+
+            <tbody>
+
+                <tr>
+
+                    <th width="180">
+
+                        Execute ID
+
+                    </th>
+
+                    <td>
+
+                        #{{ job.id }}
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+
+                        Test Plan
+
+                    </th>
+
+                    <td>
+
+                        {{ job.testplan }}
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+
+                        Status
+
+                    </th>
+
+                    <td>
+
+                        {% if job.status == "RUNNING" %}
+
+                            <span class="badge bg-success">
+
+                                <i class="fa-solid fa-spinner fa-spin me-1"></i>
+
+                                Running
+
+                            </span>
+
+                        {% elif job.status == "PASS" %}
+
+                            <span class="badge bg-primary">
+
+                                <i class="fa-solid fa-circle-check me-1"></i>
+
+                                Pass
+
+                            </span>
+
+                        {% elif job.status == "FAIL" %}
+
+                            <span class="badge bg-danger">
+
+                                <i class="fa-solid fa-circle-xmark me-1"></i>
+
+                                Fail
+
+                            </span>
+
+                        {% elif job.status == "STOP" %}
+
+                            <span class="badge bg-dark">
+
+                                <i class="fa-solid fa-stop me-1"></i>
+
+                                Stop
+
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-secondary">
+
+                                <i class="fa-solid fa-clock me-1"></i>
+
+                                Pending
+
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+
+                        Progress
+
+                    </th>
+
+                    <td>
+
+                        {{ job.progress }}%
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+
+                        Created Time
+
+                    </th>
+
+                    <td>
+
+                        {{ job.created_at|date:"Y-m-d H:i:s" }}
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

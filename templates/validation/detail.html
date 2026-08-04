@@ -1,0 +1,324 @@
+{% extends "base.html" %}
+
+{% block title %}
+Validation Detail
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="fw-bold">
+
+                <i class="fa-solid fa-clipboard-check me-2"></i>
+
+                Validation Detail
+
+            </h2>
+
+            <p class="text-muted mb-0">
+
+                View validation session information.
+
+            </p>
+
+        </div>
+
+        <a
+            href="{% url 'validation:index' %}"
+            class="btn btn-secondary">
+
+            <i class="fa-solid fa-arrow-left me-2"></i>
+
+            Back
+
+        </a>
+
+    </div>
+
+    <!-- Validation Information -->
+
+    <div class="card shadow-sm">
+
+        <div class="card-header">
+
+            <strong>
+
+                <i class="fa-solid fa-circle-info me-2"></i>
+
+                Validation Information
+
+            </strong>
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-borderless align-middle">
+
+                <tbody>
+
+                    <tr>
+
+                        <th width="220">
+
+                            Validation ID
+
+                        </th>
+
+                        <td>
+
+                            {{ validation.validation_id }}
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+
+                            Project Name
+
+                        </th>
+
+                        <td>
+
+                            {{ validation.project_name }}
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+
+                            JBOD Model
+
+                        </th>
+
+                        <td>
+
+                            {{ validation.model }}
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+
+                            Serial Number
+
+                        </th>
+
+                        <td>
+
+                            {{ validation.serial_number }}
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+
+                            Tester
+
+                        </th>
+
+                        <td>
+
+                            {{ validation.tester }}
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+
+                            Status
+
+                        </th>
+
+                        <td>
+
+                            {% if validation.status == "RUNNING" %}
+
+                                <span class="badge bg-success">
+
+                                    Running
+
+                                </span>
+
+                            {% elif validation.status == "PASS" %}
+
+                                <span class="badge bg-primary">
+
+                                    Pass
+
+                                </span>
+
+                            {% elif validation.status == "FAIL" %}
+
+                                <span class="badge bg-danger">
+
+                                    Fail
+
+                                </span>
+
+                            {% elif validation.status == "READY" %}
+
+                                <span class="badge bg-info">
+
+                                    Ready
+
+                                </span>
+
+                            {% elif validation.status == "DRAFT" %}
+
+                                <span class="badge bg-secondary">
+
+                                    Draft
+
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-dark">
+
+                                    Cancel
+
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+
+                            Start Time
+
+                        </th>
+
+                        <td>
+
+                            {{ validation.start_time|date:"Y-m-d H:i:s"|default:"-" }}
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+
+                            Finish Time
+
+                        </th>
+
+                        <td>
+
+                            {{ validation.finish_time|date:"Y-m-d H:i:s"|default:"-" }}
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+
+                            Remark
+
+                        </th>
+
+                        <td>
+
+                            {{ validation.remark|default:"-" }}
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+
+                            Created Time
+
+                        </th>
+
+                        <td>
+
+                            {{ validation.created_at|date:"Y-m-d H:i:s" }}
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+
+                            Updated Time
+
+                        </th>
+
+                        <td>
+
+                            {{ validation.updated_at|date:"Y-m-d H:i:s" }}
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="card-footer text-end">
+
+            <a
+                href="{% url 'validation:edit' validation.id %}"
+                class="btn btn-warning">
+
+                <i class="fa-solid fa-pen-to-square me-2"></i>
+
+                Edit
+
+            </a>
+
+            <a
+                href="{% url 'validation:delete' validation.id %}"
+                class="btn btn-danger">
+
+                <i class="fa-solid fa-trash me-2"></i>
+
+                Delete
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
