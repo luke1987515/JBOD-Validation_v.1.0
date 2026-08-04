@@ -149,9 +149,6 @@ JBOD-Validation/
 ---
 
 ## 🏷 Version Naming Convention / 版本命名規範
-
-
-## 🏷 Version Naming Convention / 版本命名規範
 This project follows Semantic Versioning (SemVer).
 本專案採用 Semantic Versioning（SemVer）。
 
