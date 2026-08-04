@@ -1,229 +1,228 @@
-# JBOD Validation Platform
+JBOD Validation Platform
 
-Enterprise-level JBOD Validation Management Platform built with Django.
-
-## 📖 Introduction
-
-JBOD Validation Platform is a web-based management system designed for validating and managing JBOD (Just a Bunch Of Disks) storage systems.
-
-The platform integrates:
-
-- Model Management
-- Firmware Management
-- Test Case Management
-- Validation Execution
-- Report Management
-- Dashboard Monitoring
-
-This project aims to simplify the validation workflow and improve engineering efficiency.
-
----
-
-## 🚀 Features
-
-### Dashboard
-
-- System Overview
-- Validation Statistics
-- Running Jobs
-- Recent Firmware
-- Recent Test Results
-
-### Model Management
-
-- Add/Delete/Edit JBOD Models
-- Product Information
-- Vendor Management
-
-### Firmware Management
-
-- Upload Firmware
-- Firmware Version Control
-- Release Date Management
-
-### Test Case Management
-
-- Create Test Cases
-- Test Category
-- Test Description
-- Expected Result
-
-### Validation Execution
-
-- Execute Validation Jobs
-- Running Status
-- Progress Monitoring
-- Execution History
-
-### Report Management
-
-- Validation Reports
-- Export Results
-- Historical Records
-
----
-
-## 🏗 Project Structure
-
-```
-JBOD-Validation/
-│
-├── dashboard/
-├── firmware/
-├── models_app/
-├── testcase/
-├── executor/
-├── report/
-├── validation/
-├── user/
-│
-├── static/
-├── templates/
-├── docs/
-│
-├── manage.py
-├── requirements.txt
-└── README.md
-```
-
----
-
-## 💻 Development Environment
-
-| Item | Version |
-|------|----------|
-| Python | 3.14 |
-| Django | 5.x |
-| Database | SQLite3 |
-| IDE | Visual Studio Code |
-| Version Control | Git |
-| Repository | GitHub |
-
----
-
-## ⚙ Installation
-
-### Clone Repository
-
-```bash
-git clone https://github.com/shingyu0205/JBOD-Validation_v.1.0.git
-```
-
-### Enter Project
-
-```bash
-cd JBOD-Validation_v.1.0
-```
-
-### Create Virtual Environment
-
-```bash
-python -m venv .venv
-```
-
-### Activate Virtual Environment
-
-Windows
-
-```powershell
-.\.venv\Scripts\Activate.ps1
-```
-
-### Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### Run Server
-
-```bash
-python manage.py runserver
-```
-
-Open Browser
-
-```
-http://127.0.0.1:8000/
-```
-
----
-
-## 📂 Main Applications
-
-| App | Description |
-|------|-------------|
-| dashboard | Dashboard Homepage |
-| models_app | JBOD Model Management |
-| firmware | Firmware Management |
-| testcase | Test Case Management |
-| executor | Validation Execution |
-| report | Report Management |
-| validation | Validation Control |
-| user | User Management |
-
----
-
-## 🎯 Future Plans
-
-- User Authentication
-- Permission Management
-- Report Export (PDF/Excel)
-- Email Notification
-- Dark Mode
-- REST API
-- Real-time Dashboard
-- Test Automation Integration
-- Jenkins CI/CD
-- Docker Deployment
-
----
-
-## 📸 Screenshots
-
-Coming Soon...
-
----
-v1.1.0 (2026/08/04)
-Features
-
-- Dashboard
-- Model Management
-- Firmware Management
-- Validation Center
-- Execute Validation
-- Execute Job Detail
-- Pending / Running / Stop / Retry workflow
-- Test Plan Management
-- Test Case Management
+<div align="center">
 
 
-v1.0.2 (2026/07/31)
-新增 : login 登入畫面
 
-v1.0.1 (2026/07/30)
-新增 (Added)： 新增中英文多語系切換功能。
-Added multilingual support (Traditional Chinese / English).
+Enterprise-level JBOD Validation Management Platform
 
-優化 (Improved)： 全面優化與完善 UI 介面視覺與操作體驗。
-Comprehensively improved UI visuals and overall user experience.
+企業級 JBOD 驗證管理平台
 
-v1.0.0 (2026/07/27)
-首次發布 (Initial Release)： 系統正式上線。
-Official system launch.
+</div>
 
----
+📖 Introduction / 專案介紹
 
-## 👨‍💻 Author
+JBOD Validation Platform is an enterprise-level web application built with Django for validating and managing JBOD (Just a Bunch Of Disks) storage systems.
 
-**Shing-Yu Chou**
+JBOD Validation Platform 是一套以 Django 開發的企業級 JBOD（Just a Bunch Of Disks）驗證管理平台，提供完整的驗證流程管理、測試規劃、執行追蹤與報告管理。
+
+✨ Features / 功能特色
+
+Dashboard / 儀表板
+
+Model Management / Model 管理
+
+Firmware Management / Firmware 管理
+
+Test Case Management / Test Case 管理
+
+Test Plan Management / Test Plan 管理
+
+Validation Center / Validation 管理
+
+Execute Validation Workflow / 驗證執行流程
+
+Report Center (Planned) / 報告中心（規劃中）
+
+🏗 System Architecture / 系統架構
+
+Dashboard
+    │
+    ├── Models
+    ├── Firmware
+    ├── Test Case
+    ├── Test Plan
+    ├── Validation
+    │       │
+    │       ▼
+    │   Execute Validation
+    │       │
+    │       ├── Progress
+    │       ├── Logs
+    │       └── Reports
+    └── User
+
+📊 Development Progress / 開發進度
+
+Module
+
+Progress
+
+Dashboard
+
+✅
+
+Models
+
+✅
+
+Firmware
+
+✅
+
+Test Case
+
+✅
+
+Test Plan
+
+✅
+
+Validation
+
+🟡
+
+Execute
+
+🟢
+
+Report
+
+🚧
+
+Logs
+
+🚧
+
+🛠 Tech Stack / 技術架構
+
+Category
+
+Technology
+
+Backend
+
+Django 6.x
+
+Frontend
+
+Bootstrap 5
+
+Database
+
+SQLite3
+
+Language
+
+Python 3.14
+
+IDE
+
+Visual Studio Code
+
+Version Control
+
+Git
+
+Repository
 
 GitHub
 
-https://github.com/shingyu0205
+📁 Project Structure / 專案架構
 
----
+JBOD-Validation/
+├── dashboard/
+├── executor/
+├── firmware/
+├── logs/
+├── models_app/
+├── report/
+├── testcase/
+├── testplan/
+├── user/
+├── validation/
+├── static/
+├── templates/
+├── manage.py
+└── README.md
 
-## 📄 License
+⚙ Installation / 安裝方式
 
-This project is licensed under the MIT License.
+git clone https://github.com/shingyu0205/JBOD-Validation.git
+cd JBOD-Validation
+python -m venv .venv
+
+Windows:
+
+.\.venv\Scripts\Activate.ps1
+
+pip install -r requirements.txt
+python manage.py runserver
+
+Open:
+
+http://127.0.0.1:8000/
+
+🏷 Version Naming Convention / 版本命名規範
+
+This project follows Semantic Versioning (SemVer).
+
+Version
+
+Description
+
+Major
+
+Breaking Changes
+
+Minor
+
+New Features
+
+Patch
+
+Bug Fixes
+
+📜 Release History / 版本歷程
+
+v1.1.0
+
+Execute Validation
+
+Execute Detail
+
+Pending / Running / Stop / Retry
+
+Dashboard Improvements
+
+v1.0.2
+
+Login Page
+
+v1.0.1
+
+Traditional Chinese / English UI
+
+v1.0.0
+
+Initial Release
+
+🗺 Roadmap / 開發規劃
+
+v1.2.0 Mock Validation Engine
+
+v1.3.0 Execute Logs
+
+v1.4.0 Report Center
+
+v2.0.0 Hardware Integration (SSH/IPMI/Smartctl/StorCLI/Iometer)
+
+👨‍💻 Author
+
+Shing-Yu Chou
+
+GitHub: https://github.com/shingyu0205
+
+📄 License
+
+MIT License
