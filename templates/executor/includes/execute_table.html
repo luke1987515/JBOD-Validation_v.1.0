@@ -237,6 +237,24 @@
 
                             {% endif %}
 
+                            <!-- Delete -->
+
+                            {% if job.status != "RUNNING" %}
+
+                                <button
+                                    type="button"
+                                    class="btn btn-sm btn-outline-secondary ms-1 delete-btn"
+                                    data-job-id="{{ job.id }}"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal"
+                                    title="Delete Job">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            {% endif %}
+
                         </td>
 
                     </tr>

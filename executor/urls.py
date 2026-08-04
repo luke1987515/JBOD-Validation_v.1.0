@@ -20,6 +20,13 @@ urlpatterns = [
         name="detail",
     ),
 
+    # Start Execute Job
+    path(
+        "<int:pk>/start/",
+        views.start_job,
+        name="start",
+    ),
+
     # Stop Execute Job
     path(
         "<int:pk>/stop/",
@@ -27,10 +34,11 @@ urlpatterns = [
         name="stop",
     ),
 
+    # Delete Execute Job
     path(
-    "<int:pk>/start/",
-    views.start_job,
-    name="start",
-),
+        "<int:pk>/delete/",
+        views.delete_job,
+        name="delete",
+    ),
 
 ]

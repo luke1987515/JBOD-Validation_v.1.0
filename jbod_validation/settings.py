@@ -10,23 +10,24 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# 快速開發設定 - 生產環境需調整 / Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
+# -----------------------------------------------------------------------------
+# Security
+# -----------------------------------------------------------------------------
 
-# 安全金鑰：生產環境中必須妥善保密 / SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-22abba$=9%%*xai=$wi*qh(olxklh79^#0u#l=+e8w#-!$i74)'
 
-# 除錯模式開關：生產環境中請務必設為 False / SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# 允許存取的域名或 IP 清單 / List of host/domain names that this Django site can serve
 ALLOWED_HOSTS = []
 
 
-# 應用程式清單定義 / Application definition
+# -----------------------------------------------------------------------------
+# Installed Apps
+# -----------------------------------------------------------------------------
 
 INSTALLED_APPS = [
-    # Django 內建應用程式 / Django built-in apps
+
+    # Django Built-in Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -34,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # JBOD 驗證系統自訂應用程式 / Custom domain apps for JBOD validation system
+    # JBOD Validation Platform Apps
     'dashboard',
     'user',
     'model',
@@ -42,13 +43,17 @@ INSTALLED_APPS = [
     'executor',
     'report',
     'logs',
-    "models_app",
-    "firmware",
-    "testplan",
-    "validation",
+    'models_app',
+    'firmware',
+    'testplan',
+    'validation',
 ]
 
-# HTTP 請求/回應處理中間件層 / HTTP Request/Response middleware architecture
+
+# -----------------------------------------------------------------------------
+# Middleware
+# -----------------------------------------------------------------------------
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -59,31 +64,53 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# 主路由配置文件路徑 / Main URL routing configuration file
+
+# -----------------------------------------------------------------------------
+# URL Configuration
+# -----------------------------------------------------------------------------
+
 ROOT_URLCONF = 'jbod_validation.urls'
 
-# 樣板引擎與搜尋目錄設定 / Template engine configurations and lookup directories
+
+# -----------------------------------------------------------------------------
+# Templates
+# -----------------------------------------------------------------------------
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],  # 全域 HTML 樣板存放路徑 / Global templates directory
-        'APP_DIRS': True,  # 允許自動搜尋各 App 内的 templates 目錄 / Search templates inside apps
+
+        'DIRS': [
+            BASE_DIR / "templates",
+        ],
+
+        'APP_DIRS': True,
+
         'OPTIONS': {
             'context_processors': [
+
                 'django.template.context_processors.request',
+
                 'django.contrib.auth.context_processors.auth',
+
                 'django.contrib.messages.context_processors.messages',
+
             ],
         },
     },
 ]
 
-# WSGI 伺服器進入點 / WSGI application path for production deployment
+
+# -----------------------------------------------------------------------------
+# WSGI
+# -----------------------------------------------------------------------------
+
 WSGI_APPLICATION = 'jbod_validation.wsgi.application'
 
 
-# 資料庫連線配置 / Database configuration
-# https://docs.djangoproject.com/en/6.0/ref/settings/#databases
+# -----------------------------------------------------------------------------
+# Database
+# -----------------------------------------------------------------------------
 
 DATABASES = {
     'default': {
@@ -93,8 +120,9 @@ DATABASES = {
 }
 
 
-# 密碼強度驗證器設定 / Password validation rules
-# https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
+# -----------------------------------------------------------------------------
+# Password Validation
+# -----------------------------------------------------------------------------
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -112,29 +140,40 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# 多國語系與時區國際化設定 / Internationalization and Localization
-# https://docs.djangoproject.com/en/6.0/topics/i18n/
+# -----------------------------------------------------------------------------
+# Internationalization
+# -----------------------------------------------------------------------------
 
-LANGUAGE_CODE = 'en-us'
+# 使用繁體中文
+LANGUAGE_CODE = "zh-hant"
 
-TIME_ZONE = 'UTC'
+# 台灣時區
+TIME_ZONE = "Asia/Taipei"
 
+# 啟用國際化
 USE_I18N = True
 
+# 啟用時區支援
 USE_TZ = True
 
 
-# 靜態檔案設定 (CSS, JavaScript, Images) / Static files configuration
-# https://docs.djangoproject.com/en/6.0/howto/static-files/
+# -----------------------------------------------------------------------------
+# Static Files
+# -----------------------------------------------------------------------------
 
-STATIC_URL = 'static/'
+STATIC_URL = "static/"
 
-# 全域靜態檔案存放目錄 / Global static files directory
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-# 使用者登入與登出後的預設重定向網址 / Login and Logout redirect URL configurations
+
+# -----------------------------------------------------------------------------
+# Authentication
+# -----------------------------------------------------------------------------
+
 LOGIN_URL = "/login/"
+
 LOGIN_REDIRECT_URL = "/"
+
 LOGOUT_REDIRECT_URL = "/login/"

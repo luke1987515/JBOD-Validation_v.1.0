@@ -76,6 +76,12 @@ Execute Validation
 
     {% include "executor/includes/stop_modal.html" %}
 
+    <!-- ========================= -->
+    <!-- Delete Execute Job Modal -->
+    <!-- ========================= -->
+
+    {% include "executor/includes/delete_modal.html" %}
+
 </div>
 
 {% endblock %}
@@ -117,6 +123,30 @@ document.addEventListener("DOMContentLoaded", function () {
                 const jobId = this.dataset.jobId;
 
                 stopForm.action = `/executor/${jobId}/stop/`;
+
+            });
+
+        });
+
+    }
+
+    // ===========================
+    // Delete Execute Job Modal
+    // ===========================
+
+    const deleteButtons = document.querySelectorAll(".delete-btn");
+
+    const deleteForm = document.getElementById("deleteForm");
+
+    if (deleteButtons.length > 0 && deleteForm) {
+
+        deleteButtons.forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                const jobId = this.dataset.jobId;
+
+                deleteForm.action = `/executor/${jobId}/delete/`;
 
             });
 

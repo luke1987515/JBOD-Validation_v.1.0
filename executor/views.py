@@ -13,7 +13,7 @@ def index(request):
     Execute Validation 首頁
     """
 
-    # 使用者建立新的 Execute Job
+    # 建立新的 Execute Job
     if request.method == "POST":
 
         form = ExecuteJobForm(request.POST)
@@ -102,7 +102,7 @@ def start_job(request, pk):
 
     if request.method == "POST":
 
-        # Pending、Stop、Fail 都可以重新開始
+        # Pending、Stop、Fail 可重新開始
         if job.status in (
             ExecuteJob.Status.PENDING,
             ExecuteJob.Status.STOP,
@@ -111,7 +111,7 @@ def start_job(request, pk):
 
             job.status = ExecuteJob.Status.RUNNING
 
-            # Retry 時重新從 0% 開始
+            # 每次重新執行從 0% 開始
             job.progress = 0
 
             job.save()
@@ -137,5 +137,26 @@ def stop_job(request, pk):
             job.status = ExecuteJob.Status.STOP
 
             job.save()
+
+    return redirect("executor:index")
+
+
+@login_required(login_url="/login/")
+def delete_job(request, pk):
+    """
+    Delete Execute Job
+    """
+
+    job = get_object_or_404(
+        ExecuteJob,
+        pk=pk,
+    )
+
+    if request.method == "POST":
+
+        # 執行中的 Job 不允許刪除
+        if job.status != ExecuteJob.Status.RUNNING:
+
+            job.delete()
 
     return redirect("executor:index")
