@@ -174,6 +174,25 @@ Example:
 ---
 
 ## 📜 Release History / 版本歷程
+### v1.1.2 (2026-08-05)
+
+**Added**
+- Reusable Page Header Component
+- Reusable Statistic Card Component
+- Reusable Status Badge Component
+- Reusable Search Form Component
+- Reusable Empty State Component
+
+**Improved**
+- Dashboard UI Refactoring
+- Model Management UI Refactoring
+- Firmware Management UI Refactoring
+- Unified UI Component Library
+- Improved Code Reusability
+- Enhanced UI Consistency
+
+---
+
 ### v1.1.1 (2026-08-05)
 
 **New Features**
@@ -187,9 +206,12 @@ Example:
 - Redesigned Login Interface
 - Improved Authentication Module
 - Updated Project Structure
-- Enhanced UI Consistencyb
+- Enhanced UI Consistency
+
+---
 
 ### v1.1.0 (2026-08-04)
+
 **Added**
 - Execute Validation Workflow
 - Execute Detail
@@ -201,20 +223,28 @@ Example:
 - Execute Dashboard
 - Progress Bar
 
+---
+
 ### v1.0.2 (2026-07-31)
+
 **Added**
 - Login Page
 
+---
+
 ### v1.0.1 (2026-07-30)
+
 **Added**
 - Traditional Chinese / English UI
 
 **Improved**
 - User Interface
 
-### v1.0.0 (2026-07-27)
-Initial Release
+---
 
+### v1.0.0 (2026-07-27)
+
+Initial Release
 ---
 
 ## 🗺 Roadmap / 開發規劃
