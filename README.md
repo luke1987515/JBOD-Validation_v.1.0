@@ -239,7 +239,7 @@ Initial Release
 
 ## 👨‍💻 Author
 
-Shing-Yu Chou(Travis)
+**Shing-Yu Chou(Travis)**
 
 GitHub: https://github.com/shingyu0205
 
