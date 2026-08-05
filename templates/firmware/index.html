@@ -1,76 +1,267 @@
 {% extends "base.html" %}
 
-{% block title %}韌體管理（Firmware）{% endblock %}
+{% block title %}
+韌體管理（Firmware）
+{% endblock %}
 
 {% block content %}
+
+<!-- ========================================================= -->
+<!-- Page Header -->
+<!-- ========================================================= -->
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <div>
-        <h2 class="mb-1">韌體管理 <span class="fs-5 text-muted fw-normal">(Firmware)</span></h2>
-        <p class="text-muted mb-0">管理 JBOD 各元件的韌體版本與發布資訊。</p>
-    </div>
+
+    {% include "components/page_header.html" with
+        title="韌體管理"
+        title_en="Firmware"
+        subtitle="管理 JBOD 各元件的韌體版本與發布資訊。"
+    %}
+
     <a href="{% url 'firmware_add' %}" class="btn btn-primary">
-        <i class="fa-solid fa-plus me-2"></i>新增韌體
+
+        <i class="fa-solid fa-plus me-2"></i>
+
+        新增韌體
+
     </a>
+
 </div>
 
+<!-- ========================================================= -->
+<!-- Search Form -->
+<!-- ========================================================= -->
 <div class="card mb-4">
+
     <div class="card-body">
+
         <form method="get" class="row g-3 align-items-end">
+
             <div class="col-md-5">
-                <label for="firmware-search" class="form-label">搜尋版本</label>
-                <input id="firmware-search" type="text" name="q" value="{{ keyword }}" class="form-control" placeholder="搜尋版本號…">
+
+                <label class="form-label">
+
+                    搜尋版本
+
+                </label>
+
+                <input
+                    type="text"
+                    name="q"
+                    value="{{ keyword }}"
+                    class="form-control"
+                    placeholder="搜尋版本號…">
+
             </div>
+
             <div class="col-md-4">
-                <label for="firmware-type" class="form-label">韌體類型</label>
-                <select id="firmware-type" name="type" class="form-select">
+
+                <label class="form-label">
+
+                    韌體類型
+
+                </label>
+
+                <select
+                    name="type"
+                    class="form-select">
+
                     <option value="">全部類型</option>
+
                     {% for value, label in firmware_types %}
-                        <option value="{{ value }}" {% if selected_type == value %}selected{% endif %}>{{ label }}</option>
+
+                        <option value="{{ value }}"
+                            {% if selected_type == value %}selected{% endif %}>
+
+                            {{ label }}
+
+                        </option>
+
                     {% endfor %}
+
                 </select>
+
             </div>
+
             <div class="col-md-3 d-flex gap-2">
-                <button class="btn btn-secondary"><i class="fa-solid fa-magnifying-glass me-2"></i>搜尋</button>
-                {% if keyword or selected_type %}<a href="{% url 'firmware_list' %}" class="btn btn-outline-secondary">清除</a>{% endif %}
+
+                <button
+                    class="btn btn-primary">
+
+                    <i class="fa-solid fa-magnifying-glass me-2"></i>
+
+                    搜尋
+
+                </button>
+
+                {% if keyword or selected_type %}
+
+                <a href="{% url 'firmware_list' %}"
+                   class="btn btn-outline-secondary">
+
+                    清除
+
+                </a>
+
+                {% endif %}
+
             </div>
+
         </form>
+
     </div>
+
 </div>
 
+<!-- ========================================================= -->
+<!-- Firmware Table -->
+<!-- ========================================================= -->
 <div class="card">
-    <div class="card-header py-3 d-flex justify-content-between align-items-center">
-        <span><i class="fa-solid fa-microchip me-2 text-success"></i>韌體版本清單</span>
-        <span class="text-muted fw-normal small">共 {{ firmwares|length }} 筆</span>
+
+    <div class="card-header d-flex justify-content-between align-items-center">
+
+        <div>
+
+            <i class="fa-solid fa-microchip text-success me-2"></i>
+
+            韌體版本清單
+
+        </div>
+
+        <small class="text-muted">
+
+            共 {{ firmwares|length }} 筆
+
+        </small>
+
     </div>
+
     <div class="table-responsive">
+
         <table class="table table-hover align-middle mb-0">
+
             <thead class="table-light">
+
                 <tr>
-                    <th>類型</th><th>版本號</th><th>供應商</th><th>Build 編號</th><th>發布日期</th><th>狀態</th><th class="text-end">操作</th>
+
+                    <th>類型</th>
+
+                    <th>版本號</th>
+
+                    <th>供應商</th>
+
+                    <th>Build</th>
+
+                    <th>發布日期</th>
+
+                    <th>狀態</th>
+
+                    <th class="text-end">操作</th>
+
                 </tr>
+
             </thead>
+
             <tbody>
+
             {% for firmware in firmwares %}
+
                 <tr>
-                    <td><span class="badge text-bg-light border">{{ firmware.get_firmware_type_display }}</span></td>
-                    <td class="fw-semibold">{{ firmware.version }}</td>
-                    <td>{{ firmware.vendor|default:"—" }}</td>
-                    <td>{{ firmware.build_number|default:"—" }}</td>
-                    <td>{{ firmware.release_date|date:"Y-m-d" }}</td>
-                    <td>{% include "components/status_badge.html" with status=firmware.status %}</td>
-                    <td class="text-end">
-                        <div class="btn-group">
-                            <a href="{% url 'firmware_detail' firmware.pk %}" class="btn btn-outline-info btn-sm" title="檢視詳情"><i class="fa-solid fa-eye"></i></a>
-                            <a href="{% url 'firmware_edit' firmware.pk %}" class="btn btn-outline-warning btn-sm" title="編輯"><i class="fa-solid fa-pen"></i></a>
-                            <a href="{% url 'firmware_delete' firmware.pk %}" class="btn btn-outline-danger btn-sm" title="刪除"><i class="fa-solid fa-trash"></i></a>
-                        </div>
+
+                    <td>
+
+                        <span class="badge text-bg-light border">
+
+                            {{ firmware.get_firmware_type_display }}
+
+                        </span>
+
                     </td>
+
+                    <td>
+
+                        <strong>
+
+                            {{ firmware.version }}
+
+                        </strong>
+
+                    </td>
+
+                    <td>
+
+                        {{ firmware.vendor|default:"—" }}
+
+                    </td>
+
+                    <td>
+
+                        {{ firmware.build_number|default:"—" }}
+
+                    </td>
+
+                    <td>
+
+                        {{ firmware.release_date|date:"Y-m-d" }}
+
+                    </td>
+
+                    <td>
+
+                        {% include "components/status_badge.html" with status=firmware.status %}
+
+                    </td>
+
+                    <td class="text-end">
+
+                        <div class="btn-group">
+
+                            <a href="{% url 'firmware_detail' firmware.pk %}"
+                               class="btn btn-outline-info btn-sm"
+                               title="檢視">
+
+                                <i class="fa-solid fa-eye"></i>
+
+                            </a>
+
+                            <a href="{% url 'firmware_edit' firmware.pk %}"
+                               class="btn btn-outline-warning btn-sm"
+                               title="編輯">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </a>
+
+                            <a href="{% url 'firmware_delete' firmware.pk %}"
+                               class="btn btn-outline-danger btn-sm"
+                               title="刪除">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </a>
+
+                        </div>
+
+                    </td>
+
                 </tr>
+
             {% empty %}
-                <tr><td colspan="7" class="text-center py-5"><i class="fa-regular fa-folder-open fa-2x text-secondary d-block mb-3"></i><p class="text-muted mb-3">尚無符合條件的韌體資料。</p><a href="{% url 'firmware_add' %}" class="btn btn-primary btn-sm">新增第一筆韌體</a></td></tr>
+
+                {% include "components/empty_state.html" with
+                    colspan=7
+                    message="尚無符合條件的韌體資料。"
+                    button_url="/firmware/add/"
+                    button_text="新增韌體"
+                %}
+
             {% endfor %}
+
             </tbody>
+
         </table>
+
     </div>
+
 </div>
+
 {% endblock %}

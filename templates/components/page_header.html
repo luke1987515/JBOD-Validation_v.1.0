@@ -1,13 +1,35 @@
-<div>
+<!-- ========================================================= -->
+<!-- Page Header Component -->
+<!-- Usage:
+{% include "components/page_header.html" with
+title="儀表板"
+title_en="Dashboard"
+subtitle="JBOD 驗證作業總覽"
+%}
+========================================================= -->
 
-    <h2 class="fw-bold mb-1">
-        {{ title }}
-    </h2>
+<div class="d-flex justify-content-between align-items-center mb-4">
 
-    {% if subtitle %}
+    <div>
+
+        <h2 class="mb-0">
+
+            {{ title }}
+
+            <span class="fs-5 text-muted fw-normal">
+
+                ({{ title_en }})
+
+            </span>
+
+        </h2>
+
         <small class="text-muted">
+
             {{ subtitle }}
+
         </small>
-    {% endif %}
+
+    </div>
 
 </div>

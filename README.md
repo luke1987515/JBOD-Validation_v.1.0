@@ -223,13 +223,16 @@ Initial Release
 - Mock Validation Engine
 - Auto Progress Simulation
 - Current Running Status
+
 ### v1.3.0
 - Execute Logs
 - Timeline View
+
 ### v1.4.0
 - Report Center
 - PDF Export
 - Excel Export
+
 ### v2.0.0
 - SSH Integration
 - IPMI Integration

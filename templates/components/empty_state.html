@@ -1,15 +1,48 @@
+<!-- ========================================================= -->
+<!-- Empty State Component -->
+<!-- Usage:
+{% include "components/empty_state.html" with
+    colspan=5
+    message="尚無資料"
+    button_url="/model/add/"
+    button_text="新增資料"
+%}
+========================================================= -->
+
 <tr>
 
-    <td colspan="{{ colspan }}"
-        class="text-center py-5">
+    <td colspan="{{ colspan|default:1 }}">
 
-        <i class="fa-regular fa-folder-open fa-2x text-secondary mb-3"></i>
+        <div class="text-center py-5">
 
-        <p class="text-muted mb-0">
+            <i class="fa-regular fa-folder-open fa-3x text-secondary mb-3"></i>
 
-            {{ message }}
+            <h5 class="text-muted mb-2">
 
-        </p>
+                尚無資料
+
+            </h5>
+
+            <p class="text-muted mb-4">
+
+                {{ message|default:"目前沒有任何資料。" }}
+
+            </p>
+
+            {% if button_url %}
+
+                <a href="{{ button_url }}"
+                   class="btn btn-primary">
+
+                    <i class="fa-solid fa-plus me-2"></i>
+
+                    {{ button_text|default:"新增資料" }}
+
+                </a>
+
+            {% endif %}
+
+        </div>
 
     </td>
 

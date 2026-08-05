@@ -1,65 +1,49 @@
-{% if status == "ACTIVE" %}
+{# ========================================================= #}
+{# Status Badge Component                                    #}
+{# Usage:                                                    #}
+{# {% include "components/status_badge.html" with status=job.status %} #}
+{# ========================================================= #}
 
-<span class="badge bg-success">
-
-    啟用中 (Active)
-
-</span>
-
-{% elif status == "INACTIVE" %}
+{% if status == "PENDING" %}
 
 <span class="badge bg-secondary">
-
-    已停用 (Inactive)
-
+    待執行 (Pending)
 </span>
 
 {% elif status == "RUNNING" %}
 
 <span class="badge bg-primary">
-
     執行中 (Running)
-
 </span>
 
 {% elif status == "PASS" %}
 
 <span class="badge bg-success">
-
-    通過 (Pass)
-
+    通過 (PASS)
 </span>
 
 {% elif status == "FAIL" %}
 
 <span class="badge bg-danger">
-
-    失敗 (Fail)
-
+    失敗 (FAIL)
 </span>
 
-{% elif status == "READY" %}
-
-<span class="badge bg-info">
-
-    已就緒 (Ready)
-
-</span>
-
-{% elif status == "DRAFT" %}
+{% elif status == "STOPPED" %}
 
 <span class="badge bg-warning text-dark">
+    已停止 (Stopped)
+</span>
 
-    草稿 (Draft)
+{% elif status == "CANCELLED" %}
 
+<span class="badge bg-dark">
+    已取消 (Cancelled)
 </span>
 
 {% else %}
 
-<span class="badge bg-dark">
-
+<span class="badge bg-light text-dark border">
     {{ status }}
-
 </span>
 
 {% endif %}
