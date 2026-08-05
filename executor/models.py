@@ -106,3 +106,48 @@ class ExecuteLog(models.Model):
         Returns string representation showing job and associated testcase
         """
         return f"{self.job} - {self.testcase}"
+
+class ExecuteLog(models.Model):
+    """
+    Execute Log
+    """
+
+    class Level(models.TextChoices):
+
+        INFO = "INFO", "INFO"
+
+        PASS = "PASS", "PASS"
+
+        FAIL = "FAIL", "FAIL"
+
+        WARNING = "WARNING", "WARNING"
+
+        ERROR = "ERROR", "ERROR"
+
+    job = models.ForeignKey(
+        ExecuteJob,
+        on_delete=models.CASCADE,
+        related_name="logs",
+    )
+
+    level = models.CharField(
+        max_length=20,
+        choices=Level.choices,
+        default=Level.INFO,
+    )
+
+    message = models.TextField()
+
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+    )
+
+    class Meta:
+
+        ordering = [
+            "created_at",
+        ]
+
+    def __str__(self):
+
+        return f"[{self.level}] {self.message}"

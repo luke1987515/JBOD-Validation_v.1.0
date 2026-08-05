@@ -1,96 +1,804 @@
-/* ==========================================
+/* ==========================================================
    JBOD Validation Platform
-   Login Page
-========================================== */
+   Enterprise Login UI v2.0
+   File : static/css/login.css
+   Author : Shing-Yu Chou
+   ========================================================== */
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
-    background: linear-gradient(135deg, #0f172a, #1e293b);
-    min-height: 100vh;
-}
 
-.login-wrapper {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-}
+/* ==========================================================
+   Login Background
+   ========================================================== */
 
-.login-card {
-    width: 420px;
-    background: #ffffff;
-    border-radius: 18px;
-    padding: 40px;
-    box-shadow: 0 15px 40px rgba(0,0,0,.25);
-    animation: fadeIn .5s ease;
-}
+body{
 
-.login-logo{
-    text-align:center;
-    margin-bottom:25px;
-}
-
-.login-logo h2{
-    color:#0d6efd;
-    font-weight:700;
-    margin-bottom:5px;
-}
-
-.login-logo p{
-    color:#6c757d;
-    font-size:14px;
     margin:0;
+
+    padding:0;
+
+    font-family:var(--font-family);
+
+    background:
+        linear-gradient(
+            135deg,
+            #0F172A 0%,
+            #1E3A8A 50%,
+            #2563EB 100%
+        );
+
+    min-height:100vh;
+
+    overflow:hidden;
+
 }
+
+
+/* ==========================================================
+   Wrapper
+   ========================================================== */
+
+.login-wrapper{
+
+    width:100%;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px;
+
+}
+
+
+/* ==========================================================
+   Main Container
+   ========================================================== */
+
+.login-container{
+
+    width:1200px;
+
+    max-width:100%;
+
+    min-height:720px;
+
+    display:grid;
+
+    grid-template-columns:45% 55%;
+
+    background:#FFFFFF;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    box-shadow:
+
+        0 25px 70px rgba(0,0,0,.25);
+
+}
+
+
+/* ==========================================================
+   Left Branding
+   ========================================================== */
+
+.brand-panel{
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #0F172A 0%,
+
+            #1E3A8A 55%,
+
+            #2563EB 100%
+
+        );
+
+    color:white;
+
+    padding:70px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+
+/* ==========================================================
+   Logo
+   ========================================================== */
+
+.brand-logo{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:22px;
+
+    background:
+
+        rgba(255,255,255,.12);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:42px;
+
+    margin-bottom:35px;
+
+    backdrop-filter:blur(8px);
+
+}
+
+
+.brand-logo i{
+
+    color:white;
+
+}
+
+
+/* ==========================================================
+   Brand Title
+   ========================================================== */
+
+.brand-title{
+
+    font-size:40px;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+}
+
+
+.brand-subtitle{
+
+    font-size:18px;
+
+    opacity:.85;
+
+    margin-bottom:40px;
+
+    line-height:1.8;
+
+}
+
+
+/* ==========================================================
+   Slogan
+   ========================================================== */
+
+.brand-slogan{
+
+    font-size:30px;
+
+    font-weight:600;
+
+    line-height:1.5;
+
+    margin-bottom:45px;
+
+}
+
+/* ==========================================================
+   Feature List
+   ========================================================== */
+
+.feature-list{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+}
+
+.feature-list li{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:18px;
+
+    font-size:17px;
+
+    font-weight:500;
+
+    opacity:.95;
+
+}
+
+.feature-list li i{
+
+    color:#22C55E;
+
+    font-size:18px;
+
+}
+
+
+/* ==========================================================
+   Brand Footer
+   ========================================================== */
+
+.brand-footer{
+
+    margin-top:auto;
+
+    padding-top:60px;
+
+    font-size:14px;
+
+    color:rgba(255,255,255,.75);
+
+    line-height:1.8;
+
+}
+
+
+/* ==========================================================
+   Right Login Panel
+   ========================================================== */
+
+.login-panel{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:70px;
+
+    background:#FFFFFF;
+
+}
+
+
+/* ==========================================================
+   Login Card
+   ========================================================== */
+
+.login-card{
+
+    width:100%;
+
+    max-width:460px;
+
+}
+
+.login-card h2{
+
+    font-size:36px;
+
+    font-weight:700;
+
+    color:#0F172A;
+
+    margin-bottom:8px;
+
+}
+
+.login-card p{
+
+    color:#64748B;
+
+    font-size:16px;
+
+    margin-bottom:35px;
+
+}
+
+
+/* ==========================================================
+   Form
+   ========================================================== */
 
 .form-label{
+
     font-weight:600;
+
+    color:#334155;
+
+    margin-bottom:8px;
+
+}
+
+.input-group{
+
+    margin-bottom:22px;
+
 }
 
 .input-group-text{
-    background:#f8f9fa;
+
+    background:#FFFFFF;
+
+    border-right:none;
+
+    color:#64748B;
+
 }
 
 .form-control{
-    height:48px;
+
+    border-left:none;
+
+    height:50px;
+
+    font-size:15px;
+
 }
 
 .form-control:focus{
-    border-color:#0d6efd;
-    box-shadow:0 0 0 .2rem rgba(13,110,253,.2);
+
+    border-color:#2563EB;
+
+    box-shadow:
+
+        0 0 0 .2rem rgba(37,99,235,.15);
+
 }
+
+.form-control:focus + .input-group-text{
+
+    border-color:#2563EB;
+
+}
+
+
+/* ==========================================================
+   Password Toggle
+   ========================================================== */
+
+.password-toggle{
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.password-toggle:hover{
+
+    background:#EFF6FF;
+
+    color:#2563EB;
+
+}
+
+/* ==========================================================
+   Remember Me
+   ========================================================== */
+
+.remember-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+.form-check{
+
+    margin:0;
+
+}
+
+.form-check-input{
+
+    cursor:pointer;
+
+}
+
+.form-check-label{
+
+    color:#475569;
+
+    font-size:14px;
+
+    cursor:pointer;
+
+}
+
+.forgot-password{
+
+    font-size:14px;
+
+    color:#2563EB;
+
+    text-decoration:none;
+
+    transition:.25s;
+
+}
+
+.forgot-password:hover{
+
+    color:#1D4ED8;
+
+    text-decoration:underline;
+
+}
+
+
+/* ==========================================================
+   Login Button
+   ========================================================== */
 
 .btn-login{
-    height:48px;
+
+    width:100%;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#2563EB;
+
+    color:#FFFFFF;
+
     font-size:16px;
-    font-weight:600;
+
+    font-weight:700;
+
+    transition:all .25s ease;
+
 }
 
-.version{
+.btn-login:hover{
+
+    background:#1D4ED8;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+
+        0 10px 25px rgba(37,99,235,.25);
+
+}
+
+.btn-login:active{
+
+    transform:scale(.98);
+
+}
+
+
+/* ==========================================================
+   Divider
+   ========================================================== */
+
+.login-divider{
+
+    display:flex;
+
+    align-items:center;
+
+    margin:32px 0;
+
+    color:#94A3B8;
+
+    font-size:14px;
+
+}
+
+.login-divider::before,
+
+.login-divider::after{
+
+    content:"";
+
+    flex:1;
+
+    height:1px;
+
+    background:#E2E8F0;
+
+}
+
+.login-divider span{
+
+    margin:0 15px;
+
+}
+
+
+/* ==========================================================
+   Register Link
+   ========================================================== */
+
+.register-link{
+
     text-align:center;
-    color:#6c757d;
-    margin-top:25px;
+
+}
+
+.register-link p{
+
+    margin-bottom:10px;
+
+    color:#64748B;
+
+}
+
+.register-link a{
+
+    color:#2563EB;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.register-link a:hover{
+
+    color:#1D4ED8;
+
+    text-decoration:underline;
+
+}
+
+
+/* ==========================================================
+   Version
+   ========================================================== */
+
+.version{
+
+    margin-top:45px;
+
+    text-align:center;
+
     font-size:13px;
+
+    color:#94A3B8;
+
+}
+
+.version strong{
+
+    color:#334155;
+
+}
+
+/* ==========================================================
+   Social Login (Optional)
+   ========================================================== */
+
+.social-login{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:24px;
+
+}
+
+.social-btn{
+
+    flex:1;
+
+    height:48px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border:1px solid #E2E8F0;
+
+    border-radius:12px;
+
+    background:#FFFFFF;
+
+    color:#475569;
+
+    text-decoration:none;
+
+    transition:all .25s ease;
+
+}
+
+.social-btn:hover{
+
+    background:#F8FAFC;
+
+    border-color:#2563EB;
+
+    color:#2563EB;
+
+}
+
+
+/* ==========================================================
+   Alert
+   ========================================================== */
+
+.alert{
+
+    border-radius:12px;
+
+    margin-bottom:24px;
+
+    font-size:14px;
+
+    border:none;
+
+}
+
+
+/* ==========================================================
+   Animation
+   ========================================================== */
+
+.login-card{
+
+    animation:fadeInUp .6s ease;
+
+}
+
+@keyframes fadeInUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.brand-panel{
+
+    animation:fadeIn .8s ease;
+
 }
 
 @keyframes fadeIn{
+
     from{
+
         opacity:0;
-        transform:translateY(20px);
+
     }
+
     to{
+
         opacity:1;
-        transform:translateY(0);
+
     }
-}
-
-@media(max-width:576px){
-
-.login-card{
-    width:100%;
-    padding:30px;
-}
 
 }
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media (max-width:992px){
+
+    .login-container{
+
+        grid-template-columns:1fr;
+
+        min-height:auto;
+
+    }
+
+    .brand-panel{
+
+        display:none;
+
+    }
+
+    .login-panel{
+
+        padding:50px 35px;
+
+    }
+
+}
+
+@media (max-width:576px){
+
+    .login-wrapper{
+
+        padding:20px;
+
+    }
+
+    .login-panel{
+
+        padding:35px 24px;
+
+    }
+
+    .login-card h2{
+
+        font-size:30px;
+
+    }
+
+    .remember-row{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:12px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   Dark Mode (Future Ready)
+   ========================================================== */
+
+body.dark-mode .login-card{
+
+    background:#1E293B;
+
+    color:#F8FAFC;
+
+}
+
+body.dark-mode .form-control{
+
+    background:#334155;
+
+    color:#FFFFFF;
+
+    border-color:#475569;
+
+}
+
+
+/* ==========================================================
+   End
+   JBOD Validation Platform Login UI v2.0
+   ========================================================== */

@@ -11,7 +11,7 @@
 
     <title>
 
-        JBOD Validation Platform | Login
+        JBOD Validation Platform | Register
 
     </title>
 
@@ -46,9 +46,9 @@
 
     <div class="login-container">
 
-        <!-- ========================================= -->
+        <!-- ============================== -->
         <!-- Left Brand -->
-        <!-- ========================================= -->
+        <!-- ============================== -->
 
         <div class="brand-panel">
 
@@ -92,7 +92,7 @@
 
                     <i class="fa-solid fa-circle-check"></i>
 
-                    Validation Management
+                    Validation Execution
 
                 </li>
 
@@ -100,7 +100,7 @@
 
                     <i class="fa-solid fa-circle-check"></i>
 
-                    Execute Center
+                    Report Management
 
                 </li>
 
@@ -108,7 +108,7 @@
 
                     <i class="fa-solid fa-circle-check"></i>
 
-                    Report Center
+                    Enterprise Platform
 
                 </li>
 
@@ -116,7 +116,7 @@
 
             <div class="brand-footer">
 
-                Version {{ VERSION|default:"1.1.1" }}
+                Version 1.1.1
 
                 <br>
 
@@ -126,9 +126,9 @@
 
         </div>
 
-        <!-- ========================================= -->
-        <!-- Right Login -->
-        <!-- ========================================= -->
+        <!-- ============================== -->
+        <!-- Register -->
+        <!-- ============================== -->
 
         <div class="login-panel">
 
@@ -136,31 +136,29 @@
 
                 <h2>
 
-                    Welcome Back
+                    Create Account
 
                 </h2>
 
                 <p>
 
-                    Sign in to continue JBOD Validation Platform
+                    Create your JBOD Validation Platform account
 
                 </p>
-
-                {% if form.errors %}
-
-                <div class="alert alert-danger">
-
-                    <i class="fa-solid fa-circle-exclamation me-2"></i>
-
-                    Username or Password is incorrect.
-
-                </div>
-
-                {% endif %}
 
                 <form method="post">
 
                     {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+
+                        <div class="alert alert-danger">
+
+                            {{ form.non_field_errors }}
+
+                        </div>
+
+                    {% endif %}
 
                     <!-- Username -->
 
@@ -170,86 +168,67 @@
 
                     </label>
 
-                    <div class="input-group">
+                    {{ form.username }}
 
-                        <span class="input-group-text">
+                    <!-- Email -->
 
-                            <i class="fa-solid fa-user"></i>
+                    <label class="form-label mt-3">
 
-                        </span>
+                        Email
 
-                        {{ form.username }}
+                    </label>
 
-                    </div>
+                    {{ form.email }}
+
+                    <!-- First Name -->
+
+                    <label class="form-label mt-3">
+
+                        First Name
+
+                    </label>
+
+                    {{ form.first_name }}
+
+                    <!-- Last Name -->
+
+                    <label class="form-label mt-3">
+
+                        Last Name
+
+                    </label>
+
+                    {{ form.last_name }}
 
                     <!-- Password -->
 
-                    <label class="form-label">
+                    <label class="form-label mt-3">
 
                         Password
 
                     </label>
 
-                    <div class="input-group">
+                    {{ form.password1 }}
 
-                        <span class="input-group-text">
+                    <!-- Confirm Password -->
 
-                            <i class="fa-solid fa-lock"></i>
+                    <label class="form-label mt-3">
 
-                        </span>
+                        Confirm Password
 
-                        {{ form.password }}
+                    </label>
 
-                        <span
-                            class="input-group-text password-toggle"
-                            id="togglePassword">
+                    {{ form.password2 }}
 
-                            <i class="fa-solid fa-eye"></i>
-
-                        </span>
-
-                    </div>
-
-                    <!-- Remember -->
-
-                    <div class="remember-row">
-
-                        <div class="form-check">
-
-                            <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="remember">
-
-                            <label
-                                class="form-check-label"
-                                for="remember">
-
-                                Remember Me
-
-                            </label>
-
-                        </div>
-
-                        <a
-                            href="#"
-                            class="forgot-password">
-
-                            Forgot Password?
-
-                        </a>
-
-                    </div>
-
-                    <!-- Login -->
+                    <!-- Submit -->
 
                     <button
-                        class="btn btn-primary btn-login"
-                        type="submit">
+                        type="submit"
+                        class="btn btn-primary btn-login mt-4">
 
-                        <i class="fa-solid fa-right-to-bracket me-2"></i>
+                        <i class="fa-solid fa-user-plus me-2"></i>
 
-                        Sign In
+                        Create Account
 
                     </button>
 
@@ -269,13 +248,13 @@
 
                     <p>
 
-                        Don't have an account?
+                        Already have an account?
 
                     </p>
 
-                    <a href="#">
+                    <a href="{% url 'login' %}">
 
-                        Create New Account
+                        Sign In
 
                     </a>
 

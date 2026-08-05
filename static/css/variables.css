@@ -1,0 +1,73 @@
+/* =======================================================
+   JBOD Validation Platform Design System
+   variables.css
+   ======================================================= */
+
+:root {
+
+    /* ===================================================
+       Brand Color
+       =================================================== */
+
+    --color-primary: #2563EB;
+    --color-primary-hover: #1D4ED8;
+
+    --color-success: #22C55E;
+    --color-warning: #F59E0B;
+    --color-danger: #EF4444;
+
+    --color-dark: #0F172A;
+    --color-light: #F8FAFC;
+
+    --color-gray: #64748B;
+    --color-border: #E5E7EB;
+
+    --color-white: #FFFFFF;
+
+    /* ===================================================
+       Typography
+       =================================================== */
+
+    --font-family:
+        "Segoe UI",
+        Inter,
+        Arial,
+        sans-serif;
+
+    --font-title: 32px;
+    --font-h2: 28px;
+    --font-h3: 22px;
+
+    --font-normal: 16px;
+    --font-small: 14px;
+    --font-mini: 12px;
+
+    /* ===================================================
+       Radius
+       =================================================== */
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+
+    /* ===================================================
+       Shadow
+       =================================================== */
+
+    --shadow-sm:
+        0 2px 8px rgba(0,0,0,.08);
+
+    --shadow-md:
+        0 8px 24px rgba(0,0,0,.08);
+
+    --shadow-lg:
+        0 16px 40px rgba(0,0,0,.12);
+
+    /* ===================================================
+       Transition
+       =================================================== */
+
+    --transition:
+        all .25s ease;
+
+}
