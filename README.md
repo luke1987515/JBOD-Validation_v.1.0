@@ -2,9 +2,19 @@
 
 <div align="center">
 
+Enterprise-level JBOD Validation Management Platform built with Django.
 
+The platform provides a complete validation workflow including:
 
-Enterprise-level JBOD Validation Management Platform
+- Dashboard Monitoring
+- Model Management
+- Firmware Management
+- Test Plan Management
+- Validation Execution
+- Authentication System
+- Report Management
+
+Designed for enterprise JBOD validation and automation.
 
 企業級 JBOD 驗證管理平台
 
@@ -164,6 +174,20 @@ Example:
 ---
 
 ## 📜 Release History / 版本歷程
+### v1.1.1 (2026-08-05)
+
+**New Features**
+- Enterprise Login UI
+- User Registration
+- Auto Login after Registration
+- Remember Username
+- Password Visibility Toggle
+
+**Improvements**
+- Redesigned Login Interface
+- Improved Authentication Module
+- Updated Project Structure
+- Enhanced UI Consistencyb
 
 ### v1.1.0 (2026-08-04)
 **Added**
@@ -215,7 +239,7 @@ Initial Release
 
 ## 👨‍💻 Author
 
-Shing-Yu Chou
+Shing-Yu Chou(Travis)
 
 GitHub: https://github.com/shingyu0205
 
